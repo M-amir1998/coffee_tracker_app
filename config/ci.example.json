@@ -1,0 +1,7 @@
+{
+  "SUPABASE_URL": "https://ci-placeholder.supabase.co",
+  "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_ci_placeholder",
+  "APP_ENV": "ci",
+  "WEB_REDIRECT_URL": "",
+  "PUBLIC_APP_URL": ""
+}

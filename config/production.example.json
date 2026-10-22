@@ -1,0 +1,7 @@
+{
+  "SUPABASE_URL": "https://YOUR-PROJECT-REF.supabase.co",
+  "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_YOUR_PUBLISHABLE_KEY",
+  "APP_ENV": "production",
+  "WEB_REDIRECT_URL": "https://coffee.example.org",
+  "PUBLIC_APP_URL": "https://coffee.example.org"
+}

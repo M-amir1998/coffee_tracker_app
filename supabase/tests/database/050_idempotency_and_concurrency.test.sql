@@ -1,6 +1,6 @@
 -- Scenarios 8 and 9: duplicate submissions and competing operations.
 -- True parallel requests are exercised by the HTTP integration tests
--- (integration_test/backend); here we prove the database-level guarantees.
+-- (test/backend/backend_test.dart); here we prove the database-level guarantees.
 begin;
 select plan(15);
 

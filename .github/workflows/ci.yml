@@ -1,0 +1,179 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      apple:
+        description: Also build iOS and macOS (uses macOS runner minutes)
+        type: boolean
+        default: false
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  FLUTTER_VERSION: 3.47.7
+  SUPABASE_CLI_VERSION: 2.121.0
+
+jobs:
+  flutter:
+    name: Format, analyze, test, web build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - name: Formatting
+        run: dart format --output=none --set-exit-if-changed lib test tool
+      - name: Static analysis
+        run: flutter analyze
+      - name: Every translation key exists in English and Spanish
+        run: python3 tool/l10n_keys.py lib/l10n/app_en.arb lib/l10n/app_es.arb
+      - name: Unit and widget tests
+        run: flutter test --coverage
+      - name: Web release build
+        run: |
+          cp config/ci.example.json config/ci.json
+          flutter build web --release --dart-define-from-file=config/ci.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: build/web
+          retention-days: 7
+
+  database:
+    name: Database migrations, lint and pgTAP tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with:
+          version: ${{ env.SUPABASE_CLI_VERSION }}
+      - name: Start Postgres and apply migrations
+        run: supabase db start
+      - name: Lint database functions
+        run: supabase db lint --level error
+      - name: Accounting and security tests
+        run: supabase test db
+
+  integration:
+    name: Backend integration tests (real API, RLS, concurrency)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with:
+          version: ${{ env.SUPABASE_CLI_VERSION }}
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - name: Start a minimal Supabase stack
+        run: supabase start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor,postgres-meta
+      - run: flutter pub get
+      - name: Run integration tests against the local stack
+        run: |
+          eval "$(supabase status -o env | sed 's/^/export /')"
+          SUPABASE_URL="$API_URL" SUPABASE_PUBLISHABLE_KEY="$PUBLISHABLE_KEY" SUPABASE_SECRET_KEY="$SECRET_KEY" \
+            flutter test test/backend/backend_test.dart
+
+  android:
+    name: Android APK
+    needs: flutter
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: |
+          cp config/ci.example.json config/ci.json
+          flutter build apk --release --dart-define-from-file=config/ci.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android-apk-unsigned-config
+          path: build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 7
+
+  windows:
+    name: Windows desktop
+    needs: flutter
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: |
+          Copy-Item config/ci.example.json config/ci.json
+          flutter build windows --release --dart-define-from-file=config/ci.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-release
+          path: build/windows/x64/runner/Release
+          retention-days: 7
+
+  linux:
+    name: Linux desktop
+    needs: flutter
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y ninja-build libgtk-3-dev
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: |
+          cp config/ci.example.json config/ci.json
+          flutter build linux --release --dart-define-from-file=config/ci.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux-release
+          path: build/linux/x64/release/bundle
+          retention-days: 7
+
+  apple:
+    name: iOS (no codesign) and macOS
+    if: github.event_name == 'workflow_dispatch' && inputs.apple
+    needs: flutter
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - run: |
+          cp config/ci.example.json config/ci.json
+          flutter build ios --release --no-codesign --dart-define-from-file=config/ci.json
+          flutter build macos --release --dart-define-from-file=config/ci.json
