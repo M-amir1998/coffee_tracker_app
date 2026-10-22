@@ -1,11 +1,11 @@
 # Moving from the prototype
 
-Coffee Tracker 1.0 is a new project with a new database. It does not read
-from, write to or modify the prototype (the `coffee_tracker_app` repository and
-its Supabase project), and nothing is imported automatically.
+Coffee Tracker 1.0 replaces the prototype and uses a new database. It does not
+read from, write to or modify the prototype's Supabase project, and nothing is
+imported automatically.
 
-The repository of the prototype contains no application code or schema, so
-the old data model is not known here. The path below therefore carries over
+The prototype's source code was never part of this repository (before 1.0 it
+only contained a `.gitignore`), so the old data model is not known here. The path below therefore carries over
 **balances, not history**: each member starts the new system with the balance
 they had in the old one, and the cash box starts with the money that is
 physically in it. Detailed old history stays in the prototype (or in an
