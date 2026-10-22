@@ -30,18 +30,35 @@ class Destination {
 
 /// Navigation destinations for the signed-in member, adapted to role and
 /// preferences.
-List<Destination> destinationsFor(AppLocalizations l10n, {required MemberRole? role, required bool heroes, required int unread}) {
+List<Destination> destinationsFor(
+  AppLocalizations l10n, {
+  required MemberRole? role,
+  required bool heroes,
+  required int unread,
+}) {
   return [
     Destination(ShellBranch.home, Icons.home_outlined, Icons.home_rounded, l10n.navHome),
     Destination(ShellBranch.group, Icons.groups_outlined, Icons.groups_rounded, l10n.navGroup),
     Destination(ShellBranch.activity, Icons.receipt_long_outlined, Icons.receipt_long_rounded, l10n.navActivity),
-    if (heroes) Destination(ShellBranch.heroes, Icons.emoji_events_outlined, Icons.emoji_events_rounded, l10n.navHeroes),
+    if (heroes)
+      Destination(ShellBranch.heroes, Icons.emoji_events_outlined, Icons.emoji_events_rounded, l10n.navHeroes),
     Destination(ShellBranch.analytics, Icons.insights_outlined, Icons.insights_rounded, l10n.navAnalytics),
     Destination(ShellBranch.settle, Icons.handshake_outlined, Icons.handshake_rounded, l10n.navSettleUp),
     Destination(ShellBranch.cycles, Icons.event_repeat_outlined, Icons.event_repeat_rounded, l10n.navCycles),
     if (role != null && role.managesCash)
-      Destination(ShellBranch.admin, Icons.admin_panel_settings_outlined, Icons.admin_panel_settings_rounded, l10n.navAdmin),
-    Destination(ShellBranch.notifications, Icons.notifications_outlined, Icons.notifications_rounded, l10n.navNotifications, badge: unread),
+      Destination(
+        ShellBranch.admin,
+        Icons.admin_panel_settings_outlined,
+        Icons.admin_panel_settings_rounded,
+        l10n.navAdmin,
+      ),
+    Destination(
+      ShellBranch.notifications,
+      Icons.notifications_outlined,
+      Icons.notifications_rounded,
+      l10n.navNotifications,
+      badge: unread,
+    ),
     Destination(ShellBranch.settings, Icons.settings_outlined, Icons.settings_rounded, l10n.navSettings),
   ];
 }
@@ -73,7 +90,12 @@ class AppShell extends ConsumerWidget {
         onSelect: _go,
         unread: unread,
       ),
-      WindowSize.medium => _RailShell(shell: navigationShell, destinations: destinations, current: current, onSelect: _go),
+      WindowSize.medium => _RailShell(
+        shell: navigationShell,
+        destinations: destinations,
+        current: current,
+        onSelect: _go,
+      ),
       _ => _SidebarShell(shell: navigationShell, destinations: destinations, current: current, onSelect: _go),
     };
 
@@ -124,7 +146,13 @@ class _CompactShell extends StatelessWidget {
     final l10n = context.l10n;
     // Phones show four primary destinations plus "More".
     final primary = destinations.where((d) => d.branch.index <= ShellBranch.analytics.index).take(4).toList();
-    final more = Destination(ShellBranch.more, Icons.menu_rounded, Icons.menu_open_rounded, l10n.navMore, badge: unread);
+    final more = Destination(
+      ShellBranch.more,
+      Icons.menu_rounded,
+      Icons.menu_open_rounded,
+      l10n.navMore,
+      badge: unread,
+    );
     final items = [...primary, more];
     final selected = items.indexWhere((d) => d.branch == current);
 
@@ -169,7 +197,10 @@ class _RailShell extends StatelessWidget {
                     selectedIndex: selected < 0 ? null : selected,
                     onDestinationSelected: (index) => onSelect(destinations[index].branch),
                     labelType: NavigationRailLabelType.all,
-                    leading: const Padding(padding: EdgeInsets.symmetric(vertical: Spacing.sm), child: AppLogo(size: 40)),
+                    leading: const Padding(
+                      padding: EdgeInsets.symmetric(vertical: Spacing.sm),
+                      child: AppLogo(size: 40),
+                    ),
                     destinations: [
                       for (final d in destinations)
                         NavigationRailDestination(
@@ -208,7 +239,8 @@ class _SidebarShell extends ConsumerWidget {
     final admin = destinations.where((d) => d.branch == ShellBranch.admin).toList();
     final footer = destinations.where((d) => d.branch.index > ShellBranch.admin.index).toList();
 
-    Widget item(Destination d) => _SidebarItem(destination: d, selected: d.branch == current, onTap: () => onSelect(d.branch));
+    Widget item(Destination d) =>
+        _SidebarItem(destination: d, selected: d.branch == current, onTap: () => onSelect(d.branch));
 
     return Scaffold(
       body: Row(
@@ -255,7 +287,11 @@ class _SidebarShell extends ConsumerWidget {
                             MemberAvatar(name: profile.displayName),
                             const SizedBox(width: Spacing.sm),
                             Expanded(
-                              child: Text(profile.displayName, style: theme.textTheme.titleSmall, overflow: TextOverflow.ellipsis),
+                              child: Text(
+                                profile.displayName,
+                                style: theme.textTheme.titleSmall,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                             IconButton(
                               tooltip: l10n.shortcutsTitle,

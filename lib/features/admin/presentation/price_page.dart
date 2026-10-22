@@ -84,7 +84,12 @@ class _PricePageState extends ConsumerState<PricePage> {
                 children: [
                   Text(l10n.priceExplanation, style: theme.textTheme.bodySmall),
                   const SizedBox(height: Spacing.md),
-                  AmountField(controller: _price, label: l10n.fieldCoffeePrice, maxCents: 10000, currency: group.currency),
+                  AmountField(
+                    controller: _price,
+                    label: l10n.fieldCoffeePrice,
+                    maxCents: 10000,
+                    currency: group.currency,
+                  ),
                   const SizedBox(height: Spacing.sm),
                   OutlinedButton.icon(
                     onPressed: () async {

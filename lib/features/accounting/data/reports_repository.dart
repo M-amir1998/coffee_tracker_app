@@ -28,7 +28,12 @@ class ActivityFilter {
   static const none = ActivityFilter();
 
   bool get isEmpty =>
-      (types == null || types!.isEmpty) && memberId == null && from == null && to == null && cycleId == null && statuses == null;
+      (types == null || types!.isEmpty) &&
+      memberId == null &&
+      from == null &&
+      to == null &&
+      cycleId == null &&
+      statuses == null;
 
   ActivityFilter copyWith({
     Set<ActivityType>? Function()? types,
@@ -81,9 +86,14 @@ class ReportsRepository {
   Future<Dashboard> dashboard(String groupId) async =>
       Dashboard.fromJson(await _client.callJson('get_dashboard', {'p_group_id': groupId}));
 
-  Future<GroupOverview> overview(String groupId, {String? cycleId, bool allTime = false}) async => GroupOverview.fromJson(
-    await _client.callJson('get_group_overview', {'p_group_id': groupId, 'p_cycle_id': cycleId, 'p_all_time': allTime}),
-  );
+  Future<GroupOverview> overview(String groupId, {String? cycleId, bool allTime = false}) async =>
+      GroupOverview.fromJson(
+        await _client.callJson('get_group_overview', {
+          'p_group_id': groupId,
+          'p_cycle_id': cycleId,
+          'p_all_time': allTime,
+        }),
+      );
 
   Future<List<MemberBalance>> memberBalances(String groupId, {String? cycleId, bool allTime = false}) async {
     final rows = await _client.callList('get_member_balances', {

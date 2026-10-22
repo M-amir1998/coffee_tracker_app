@@ -273,7 +273,12 @@ class CashSummary {
 }
 
 class CycleReportRow {
-  const CycleReportRow({required this.userId, required this.displayName, required this.breakdown, required this.active});
+  const CycleReportRow({
+    required this.userId,
+    required this.displayName,
+    required this.breakdown,
+    required this.active,
+  });
 
   factory CycleReportRow.fromJson(Json json) => CycleReportRow(
     userId: json.str('user_id'),

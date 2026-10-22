@@ -130,7 +130,11 @@ class _Leaderboard extends StatelessWidget {
 
     if (ranked.isEmpty) {
       return AppCard(
-        child: EmptyState(icon: Icons.emoji_events_outlined, title: l10n.heroesEmptyTitle, message: l10n.heroesEmptyMessage),
+        child: EmptyState(
+          icon: Icons.emoji_events_outlined,
+          title: l10n.heroesEmptyTitle,
+          message: l10n.heroesEmptyMessage,
+        ),
       );
     }
 
@@ -138,7 +142,9 @@ class _Leaderboard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        AppCard(child: Podium(entries: top, seed: seed)),
+        AppCard(
+          child: Podium(entries: top, seed: seed),
+        ),
         if (me != null && me.isHidden) ...[
           const SizedBox(height: Spacing.sm),
           Text(l10n.heroesYouAreHidden, style: theme.textTheme.bodySmall),
@@ -157,7 +163,11 @@ class _Leaderboard extends StatelessWidget {
                         children: [
                           SizedBox(
                             width: 24,
-                            child: Text('${entry.rank}', style: theme.textTheme.titleSmall, textAlign: TextAlign.center),
+                            child: Text(
+                              '${entry.rank}',
+                              style: theme.textTheme.titleSmall,
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                           const SizedBox(width: 6),
                           MemberAvatar(name: entry.entry.displayName, radius: 16),
@@ -226,7 +236,11 @@ class _FunStats extends ConsumerWidget {
 
     final facts = [
       (Icons.local_fire_department_rounded, l10n.streakCurrent(streak.current), l10n.streakBest(streak.best)),
-      (Icons.pie_chart_rounded, l10n.shareOfMonth(share), l10n.monthCoffees(stats.monthCoffees, stats.groupMonthCoffees)),
+      (
+        Icons.pie_chart_rounded,
+        l10n.shareOfMonth(share),
+        l10n.monthCoffees(stats.monthCoffees, stats.groupMonthCoffees),
+      ),
       if (stats.favoriteHour != null)
         (Icons.schedule_rounded, l10n.favoriteHour(_hour(context, stats.favoriteHour!)), l10n.favoriteHourHint),
       if (stats.groupWeekBusiestHour != null)

@@ -23,8 +23,7 @@ class ProfileRepository {
     });
   }
 
-  Future<void> updateDisplayName(String displayName) =>
-      _client.call('update_profile', {'p_display_name': displayName});
+  Future<void> updateDisplayName(String displayName) => _client.call('update_profile', {'p_display_name': displayName});
 
   Future<UserPreferences> updatePreferences(UserPreferences preferences) async {
     final Json json = await _client.callJson('update_preferences', {

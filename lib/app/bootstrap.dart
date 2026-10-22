@@ -28,7 +28,10 @@ Future<void> bootstrap() async {
   final config = AppConfig.fromEnvironment();
   final preferences = await SharedPreferencesWithCache.create(cacheOptions: const SharedPreferencesWithCacheOptions());
 
-  final overrides = [appConfigProvider.overrideWithValue(config), sharedPreferencesProvider.overrideWithValue(preferences)];
+  final overrides = [
+    appConfigProvider.overrideWithValue(config),
+    sharedPreferencesProvider.overrideWithValue(preferences),
+  ];
 
   if (config.isValid) {
     await Supabase.initialize(
@@ -52,7 +55,10 @@ Future<void> bootstrap() async {
 
 void _registerFontLicenses() {
   LicenseRegistry.addLicense(() async* {
-    for (final (family, asset) in [('Inter', 'assets/fonts/OFL-Inter.txt'), ('Fraunces', 'assets/fonts/OFL-Fraunces.txt')]) {
+    for (final (family, asset) in [
+      ('Inter', 'assets/fonts/OFL-Inter.txt'),
+      ('Fraunces', 'assets/fonts/OFL-Fraunces.txt'),
+    ]) {
       final text = await rootBundle.loadString(asset);
       yield LicenseEntryWithLineBreaks([family], text);
     }

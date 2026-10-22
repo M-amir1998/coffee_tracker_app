@@ -2,7 +2,7 @@
 ///
 /// Text cells that a spreadsheet could interpret as a formula (starting with
 /// `=`, `+`, `-`, `@`, tab or carriage return) are prefixed with an apostrophe
-/// to prevent CSV injection. Numbers are written as-is.
+/// to prevent CSV injection. Numbers, also as text like `-4.60`, stay as-is.
 class CsvBuilder {
   CsvBuilder(List<String> header) : _rows = [header];
 
@@ -25,11 +25,14 @@ class CsvBuilder {
     return buffer.toString();
   }
 
+  /// Plain numbers such as `-8.00` cannot be formulas and stay unchanged.
+  static final _number = RegExp(r'^-?\d+(\.\d+)?$');
+
   static String _cell(Object? value) {
     if (value == null) return '';
     if (value is num || value is bool) return value.toString();
     var text = value.toString();
-    if (text.isNotEmpty && '=+-@\t\r'.contains(text[0])) text = "'$text";
+    if (text.isNotEmpty && '=+-@\t\r'.contains(text[0]) && !_number.hasMatch(text)) text = "'$text";
     final needsQuotes = text.contains(',') || text.contains('"') || text.contains('\n') || text.contains('\r');
     return needsQuotes ? '"${text.replaceAll('"', '""')}"' : text;
   }

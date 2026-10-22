@@ -114,7 +114,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.join,
         builder: (context, state) => const JoinGroupPage(),
         routes: [
-          GoRoute(path: ':code', builder: (context, state) => JoinGroupPage(code: state.pathParameters['code'])),
+          GoRoute(
+            path: ':code',
+            builder: (context, state) => JoinGroupPage(code: state.pathParameters['code']),
+          ),
         ],
       ),
       StatefulShellRoute.indexedStack(
@@ -198,5 +201,6 @@ final routerProvider = Provider<GoRouter>((ref) {
   return router;
 });
 
-StatefulShellBranch _branch(String path, Widget page) =>
-    StatefulShellBranch(routes: [GoRoute(path: path, builder: (context, state) => page)]);
+StatefulShellBranch _branch(String path, Widget page) => StatefulShellBranch(
+  routes: [GoRoute(path: path, builder: (context, state) => page)],
+);

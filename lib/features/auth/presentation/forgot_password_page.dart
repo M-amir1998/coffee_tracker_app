@@ -62,7 +62,10 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
               controller: _email,
               keyboardType: TextInputType.emailAddress,
               autofillHints: const [AutofillHints.email],
-              decoration: InputDecoration(labelText: l10n.fieldEmail, prefixIcon: const Icon(Icons.mail_outline_rounded)),
+              decoration: InputDecoration(
+                labelText: l10n.fieldEmail,
+                prefixIcon: const Icon(Icons.mail_outline_rounded),
+              ),
               validator: (value) => AuthValidators.email(l10n, value),
               onFieldSubmitted: (_) => unawaited(_submit()),
             ),

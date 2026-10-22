@@ -35,7 +35,9 @@ String activitySentence(BuildContext context, ActivityItem item) {
           ? l10n.activityReimbursementRequest(member, amount)
           : l10n.activityReimbursement(actor, member, amount),
     TransactionKind.cashAdjustment =>
-      (item.direction ?? 1) > 0 ? l10n.activityCashAdjustmentUp(actor, amount) : l10n.activityCashAdjustmentDown(actor, amount),
+      (item.direction ?? 1) > 0
+          ? l10n.activityCashAdjustmentUp(actor, amount)
+          : l10n.activityCashAdjustmentDown(actor, amount),
     TransactionKind.balanceAdjustment =>
       (item.direction ?? 1) > 0
           ? l10n.activityBalanceCharge(actor, member, amount)

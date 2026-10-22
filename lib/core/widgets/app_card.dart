@@ -62,10 +62,7 @@ class SectionCard extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: Semantics(
-                  header: true,
-                  child: Text(title, style: Theme.of(context).textTheme.titleMedium),
-                ),
+                child: Semantics(header: true, child: Text(title, style: Theme.of(context).textTheme.titleMedium)),
               ),
               ?trailing,
             ],

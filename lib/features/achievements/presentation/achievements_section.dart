@@ -17,7 +17,10 @@ class AchievementsSection extends StatelessWidget {
     final unlocked = achievements.where((a) => a.unlocked).length;
     return SectionCard(
       title: l10n.achievementsTitle,
-      trailing: Text(l10n.achievementsProgress(unlocked, achievements.length), style: Theme.of(context).textTheme.labelLarge),
+      trailing: Text(
+        l10n.achievementsProgress(unlocked, achievements.length),
+        style: Theme.of(context).textTheme.labelLarge,
+      ),
       child: LayoutBuilder(
         builder: (context, constraints) {
           final columns = (constraints.maxWidth / 220).floor().clamp(1, 3);
@@ -25,7 +28,13 @@ class AchievementsSection extends StatelessWidget {
           return Wrap(
             spacing: Spacing.sm,
             runSpacing: Spacing.sm,
-            children: [for (final a in achievements) SizedBox(width: width, child: _AchievementTile(progress: a))],
+            children: [
+              for (final a in achievements)
+                SizedBox(
+                  width: width,
+                  child: _AchievementTile(progress: a),
+                ),
+            ],
           );
         },
       ),
@@ -70,7 +79,8 @@ class _AchievementTile extends StatelessWidget {
     final (icon, title, description) = achievementText(l10n, progress.id);
     final unlocked = progress.unlocked;
     return Semantics(
-      label: '$title. $description. ${unlocked ? l10n.achievementUnlocked : l10n.achievementLocked(progress.current, progress.target)}',
+      label:
+          '$title. $description. ${unlocked ? l10n.achievementUnlocked : l10n.achievementLocked(progress.current, progress.target)}',
       excludeSemantics: true,
       child: DecoratedBox(
         decoration: BoxDecoration(

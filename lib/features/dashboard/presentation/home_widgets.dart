@@ -45,11 +45,7 @@ class QuickActions extends StatelessWidget {
         runSpacing: Spacing.sm,
         children: [
           for (final (icon, label, onTap) in actions)
-            ActionChip(
-              avatar: Icon(icon, size: 18),
-              label: Text(label),
-              onPressed: () => unawaited(onTap()),
-            ),
+            ActionChip(avatar: Icon(icon, size: 18), label: Text(label), onPressed: () => unawaited(onTap())),
         ],
       ),
     );

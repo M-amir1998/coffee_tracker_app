@@ -46,7 +46,9 @@ Future<CoffeeOutcome> recordCoffee(
     case CoffeeRecorded(:final result):
       final balance = result.balanceCents;
       show(
-        balance == null ? l10n.coffeeRecorded(quantity) : l10n.coffeeRecordedWithBalance(quantity, _balanceText(l10n, balance, locale)),
+        balance == null
+            ? l10n.coffeeRecorded(quantity)
+            : l10n.coffeeRecordedWithBalance(quantity, _balanceText(l10n, balance, locale)),
         icon: Icons.coffee_rounded,
         onUndo: () => unawaited(_undo(ref, messenger, l10n, result.transactionId)),
       );

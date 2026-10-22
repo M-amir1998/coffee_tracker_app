@@ -106,7 +106,10 @@ class _SettleUpPageState extends ConsumerState<SettleUpPage> {
                           controller: _reserve,
                           enabled: _useCashBox,
                           keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                          decoration: InputDecoration(labelText: l10n.settleReserve, helperText: l10n.settleReserveHint),
+                          decoration: InputDecoration(
+                            labelText: l10n.settleReserve,
+                            helperText: l10n.settleReserveHint,
+                          ),
                           onChanged: (_) => setState(() {}),
                         ),
                       ],
@@ -171,7 +174,11 @@ class _PlanList extends ConsumerWidget {
     final myId = ref.watch(currentUserIdProvider);
     if (plan.isSettled) {
       return AppCard(
-        child: EmptyState(icon: Icons.celebration_rounded, title: l10n.settleAllDoneTitle, message: l10n.settleAllDoneMessage),
+        child: EmptyState(
+          icon: Icons.celebration_rounded,
+          title: l10n.settleAllDoneTitle,
+          message: l10n.settleAllDoneMessage,
+        ),
       );
     }
     String money(int cents) => context.money(cents, currency: group.currency);
@@ -192,32 +199,26 @@ class _PlanList extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        switch (s.type) {
-                          SuggestionType.reimbursement => l10n.suggestReimbursement(s.toName!, money(s.amountCents)),
-                          SuggestionType.transfer => l10n.suggestTransfer(s.fromName!, s.toName!, money(s.amountCents)),
-                          SuggestionType.deposit => l10n.suggestDeposit(s.fromName!, money(s.amountCents)),
-                        },
-                        style: theme.textTheme.titleSmall,
-                      ),
+                      Text(switch (s.type) {
+                        SuggestionType.reimbursement => l10n.suggestReimbursement(s.toName!, money(s.amountCents)),
+                        SuggestionType.transfer => l10n.suggestTransfer(s.fromName!, s.toName!, money(s.amountCents)),
+                        SuggestionType.deposit => l10n.suggestDeposit(s.fromName!, money(s.amountCents)),
+                      }, style: theme.textTheme.titleSmall),
                       const SizedBox(height: 2),
-                      Text(
-                        switch (s.type) {
-                          SuggestionType.reimbursement => l10n.explainReimbursement(
-                            s.toName!,
-                            money(s.toOutstandingCents),
-                            money(s.cashBeforeCents),
-                          ),
-                          SuggestionType.transfer => l10n.explainTransfer(
-                            s.fromName!,
-                            money(s.fromOutstandingCents),
-                            s.toName!,
-                            money(s.toOutstandingCents),
-                          ),
-                          SuggestionType.deposit => l10n.explainDeposit(s.fromName!, money(s.fromOutstandingCents)),
-                        },
-                        style: theme.textTheme.bodySmall,
-                      ),
+                      Text(switch (s.type) {
+                        SuggestionType.reimbursement => l10n.explainReimbursement(
+                          s.toName!,
+                          money(s.toOutstandingCents),
+                          money(s.cashBeforeCents),
+                        ),
+                        SuggestionType.transfer => l10n.explainTransfer(
+                          s.fromName!,
+                          money(s.fromOutstandingCents),
+                          s.toName!,
+                          money(s.toOutstandingCents),
+                        ),
+                        SuggestionType.deposit => l10n.explainDeposit(s.fromName!, money(s.fromOutstandingCents)),
+                      }, style: theme.textTheme.bodySmall),
                       const SizedBox(height: Spacing.xs),
                       if (_canRecord(s, myId, group.role))
                         TextButton.icon(

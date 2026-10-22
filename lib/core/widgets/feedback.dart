@@ -20,7 +20,9 @@ void showToast(BuildContext context, String message, {String? actionLabel, VoidC
             Expanded(child: Text(message)),
           ],
         ),
-        action: actionLabel == null || onAction == null ? null : SnackBarAction(label: actionLabel, onPressed: onAction),
+        action: actionLabel == null || onAction == null
+            ? null
+            : SnackBarAction(label: actionLabel, onPressed: onAction),
         duration: Duration(seconds: actionLabel == null ? 4 : 7),
       ),
     );
@@ -68,7 +70,9 @@ Future<bool> confirmAction(
       actions: [
         TextButton(onPressed: () => Navigator.pop(context, false), child: Text(context.l10n.actionCancel)),
         FilledButton(
-          style: destructive ? FilledButton.styleFrom(backgroundColor: scheme.error, foregroundColor: scheme.onError) : null,
+          style: destructive
+              ? FilledButton.styleFrom(backgroundColor: scheme.error, foregroundColor: scheme.onError)
+              : null,
           onPressed: () => Navigator.pop(context, true),
           child: Text(confirmLabel),
         ),
@@ -168,18 +172,19 @@ Future<bool> confirmByTyping(
 }) async {
   final result = await showDialog<bool>(
     context: context,
-    builder: (context) => _TypedConfirmDialog(
-      title: title,
-      message: message,
-      expected: expected,
-      confirmLabel: confirmLabel,
-    ),
+    builder: (context) =>
+        _TypedConfirmDialog(title: title, message: message, expected: expected, confirmLabel: confirmLabel),
   );
   return result ?? false;
 }
 
 class _TypedConfirmDialog extends StatefulWidget {
-  const _TypedConfirmDialog({required this.title, required this.message, required this.expected, required this.confirmLabel});
+  const _TypedConfirmDialog({
+    required this.title,
+    required this.message,
+    required this.expected,
+    required this.confirmLabel,
+  });
 
   final String title;
   final String message;

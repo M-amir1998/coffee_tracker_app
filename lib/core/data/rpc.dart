@@ -15,8 +15,7 @@ extension Rpc on SupabaseClient {
   Future<Object?> call(String function, [Map<String, Object?>? params]) =>
       guard(() => rpc<dynamic>(function, params: _clean(params)).timeout(_timeout));
 
-  Future<Json> callJson(String function, [Map<String, Object?>? params]) async =>
-      asJson(await call(function, params));
+  Future<Json> callJson(String function, [Map<String, Object?>? params]) async => asJson(await call(function, params));
 
   Future<List<Json>> callList(String function, [Map<String, Object?>? params]) async =>
       asJsonList(await call(function, params));

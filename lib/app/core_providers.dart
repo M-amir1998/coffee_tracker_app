@@ -7,9 +7,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 final appConfigProvider = Provider<AppConfig>((ref) => AppConfig.fromEnvironment());
 
 /// Overridden in `bootstrap.dart` once Supabase is initialised.
-final supabaseClientProvider = Provider<SupabaseClient>(
-  (ref) => throw StateError('Supabase has not been initialised'),
-);
+final supabaseClientProvider = Provider<SupabaseClient>((ref) => throw StateError('Supabase has not been initialised'));
 
 /// Device-local key/value storage. Overridden in `bootstrap.dart`.
 final sharedPreferencesProvider = Provider<SharedPreferencesWithCache>(

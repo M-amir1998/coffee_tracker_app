@@ -16,14 +16,21 @@ class Podium extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final byRank = {for (final rank in [1, 2, 3]) rank: entries.where((e) => e.rank == rank).toList()};
+    final byRank = {
+      for (final rank in [1, 2, 3]) rank: entries.where((e) => e.rank == rank).toList(),
+    };
     // Visual order: silver, gold, bronze.
     final columns = [2, 1, 3].where((rank) => byRank[rank]!.isNotEmpty).toList();
     return Column(
       children: [
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
-          children: [for (final rank in columns) Expanded(child: _PodiumColumn(rank: rank, entries: byRank[rank]!))],
+          children: [
+            for (final rank in columns)
+              Expanded(
+                child: _PodiumColumn(rank: rank, entries: byRank[rank]!),
+              ),
+          ],
         ),
         const SizedBox(height: Spacing.md),
         for (final entry in entries) _HeroMessage(entry: entry, seed: seed),
@@ -83,7 +90,10 @@ class _PodiumColumn extends StatelessWidget {
               alignment: Alignment.bottomRight,
               children: [
                 DecoratedBox(
-                  decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: color, width: 3)),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: color, width: 3),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(2),
                     child: MemberAvatar(name: entries.first.entry.displayName, radius: rank == 1 ? 30 : 24),

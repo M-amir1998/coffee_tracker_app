@@ -96,10 +96,7 @@ class _BrandPanel extends StatelessWidget {
               style: text.displaySmall?.copyWith(color: Palette.cream, fontFamily: AppTheme.displayFont),
             ),
             const SizedBox(height: Spacing.md),
-            Text(
-              l10n.authBrandBody,
-              style: text.bodyLarge?.copyWith(color: Palette.cream.withValues(alpha: 0.82)),
-            ),
+            Text(l10n.authBrandBody, style: text.bodyLarge?.copyWith(color: Palette.cream.withValues(alpha: 0.82))),
             const SizedBox(height: Spacing.xl),
             for (final line in [l10n.authBrandPoint1, l10n.authBrandPoint2, l10n.authBrandPoint3])
               Padding(
@@ -108,7 +105,9 @@ class _BrandPanel extends StatelessWidget {
                   children: [
                     const Icon(Icons.check_circle_rounded, color: Palette.caramel, size: 20),
                     const SizedBox(width: Spacing.sm),
-                    Expanded(child: Text(line, style: text.bodyLarge?.copyWith(color: Palette.cream))),
+                    Expanded(
+                      child: Text(line, style: text.bodyLarge?.copyWith(color: Palette.cream)),
+                    ),
                   ],
                 ),
               ),

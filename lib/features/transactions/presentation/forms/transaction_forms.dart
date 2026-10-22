@@ -16,11 +16,15 @@ import 'package:coffee_tracker/features/transactions/presentation/forms/member_p
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
 
-Future<void> showDepositForm(BuildContext context, {required String groupId, int? suggestedCents, String? forMemberId}) =>
-    showAdaptiveSheet<void>(
-      context,
-      builder: (_) => DepositForm(groupId: groupId, suggestedCents: suggestedCents, forMemberId: forMemberId),
-    );
+Future<void> showDepositForm(
+  BuildContext context, {
+  required String groupId,
+  int? suggestedCents,
+  String? forMemberId,
+}) => showAdaptiveSheet<void>(
+  context,
+  builder: (_) => DepositForm(groupId: groupId, suggestedCents: suggestedCents, forMemberId: forMemberId),
+);
 
 Future<void> showPurchaseForm(BuildContext context, {required String groupId}) =>
     showAdaptiveSheet<void>(context, builder: (_) => PurchaseForm(groupId: groupId));
@@ -41,14 +45,24 @@ Future<void> showTransferForm(
   ),
 );
 
-Future<void> showReimbursementForm(BuildContext context, {required String groupId, String? memberId, int? suggestedCents}) =>
-    showAdaptiveSheet<void>(
-      context,
-      builder: (_) => ReimbursementForm(groupId: groupId, memberId: memberId, suggestedCents: suggestedCents),
-    );
+Future<void> showReimbursementForm(
+  BuildContext context, {
+  required String groupId,
+  String? memberId,
+  int? suggestedCents,
+}) => showAdaptiveSheet<void>(
+  context,
+  builder: (_) => ReimbursementForm(groupId: groupId, memberId: memberId, suggestedCents: suggestedCents),
+);
 
 /// Shared success handling: refresh data, close, and confirm what happened.
-void _done(BuildContext context, WidgetRef ref, TransactionResult result, {required String posted, required String pending}) {
+void _done(
+  BuildContext context,
+  WidgetRef ref,
+  TransactionResult result, {
+  required String posted,
+  required String pending,
+}) {
   ref.read(dataRevisionProvider.notifier).bump();
   final messenger = ScaffoldMessenger.of(context);
   Navigator.of(context).pop();
@@ -235,7 +249,8 @@ class _PurchaseFormState extends ConsumerState<PurchaseForm> with SubmitOnce {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final dashboard = _dashboard(ref, widget.groupId);
-    final needsApproval = !(dashboard?.role.managesCash ?? false) && (dashboard?.group.requirePurchaseApproval ?? false);
+    final needsApproval =
+        !(dashboard?.role.managesCash ?? false) && (dashboard?.group.requirePurchaseApproval ?? false);
     final info = _funding == PurchaseFunding.personal ? l10n.purchaseInfoPersonal : l10n.purchaseInfoBox;
     return FormScaffold(
       formKey: _formKey,
@@ -434,8 +449,9 @@ class _TransferFormState extends ConsumerState<TransferForm> with SubmitOnce {
           controller: _note,
           maxLength: 500,
           decoration: InputDecoration(labelText: _override ? l10n.fieldReasonRequired : l10n.fieldNoteOptional),
-          validator: (value) =>
-              _override && mode == _TransferMode.betweenOthers && (value?.trim().length ?? 0) < 3 ? l10n.validationNoteRequired : null,
+          validator: (value) => _override && mode == _TransferMode.betweenOthers && (value?.trim().length ?? 0) < 3
+              ? l10n.validationNoteRequired
+              : null,
         ),
       ],
     );
@@ -494,7 +510,9 @@ class _ReimbursementFormState extends ConsumerState<ReimbursementForm> with Subm
             idempotencyKey: _key,
             description: _note.text.trim().isEmpty ? null : _note.text.trim(),
           );
-      if (mounted) _done(context, ref, result, posted: l10n.reimbursementRecorded, pending: l10n.reimbursementRequested);
+      if (mounted) {
+        _done(context, ref, result, posted: l10n.reimbursementRecorded, pending: l10n.reimbursementRequested);
+      }
     });
   }
 
@@ -511,9 +529,7 @@ class _ReimbursementFormState extends ConsumerState<ReimbursementForm> with Subm
       formKey: _formKey,
       icon: Icons.payments_rounded,
       title: managesCash ? l10n.reimburseTitle : l10n.requestReimbursementTitle,
-      info: managesCash
-          ? l10n.reimburseInfo(context.money(inputs?.cashBoxCents ?? 0))
-          : l10n.requestReimbursementInfo,
+      info: managesCash ? l10n.reimburseInfo(context.money(inputs?.cashBoxCents ?? 0)) : l10n.requestReimbursementInfo,
       busy: busy,
       error: error,
       submitLabel: managesCash ? l10n.reimburseSubmit : l10n.requestReimbursementSubmit,

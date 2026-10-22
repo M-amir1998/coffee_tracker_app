@@ -133,7 +133,11 @@ class NotificationsPage extends ConsumerWidget {
         value: notifications,
         onRetry: () => ref.invalidate(notificationsProvider),
         data: (items) => items.isEmpty
-            ? EmptyState(icon: Icons.notifications_none_rounded, title: l10n.notificationsEmpty, message: l10n.notificationsEmptyHint)
+            ? EmptyState(
+                icon: Icons.notifications_none_rounded,
+                title: l10n.notificationsEmpty,
+                message: l10n.notificationsEmptyHint,
+              )
             : AppCard(
                 padding: const EdgeInsets.symmetric(vertical: Spacing.xs),
                 child: Column(

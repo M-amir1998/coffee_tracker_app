@@ -78,7 +78,10 @@ class _VerifyEmailPageState extends ConsumerState<VerifyEmailPage> {
             TextFormField(
               controller: _email,
               keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(labelText: l10n.fieldEmail, prefixIcon: const Icon(Icons.mail_outline_rounded)),
+              decoration: InputDecoration(
+                labelText: l10n.fieldEmail,
+                prefixIcon: const Icon(Icons.mail_outline_rounded),
+              ),
               validator: (value) => AuthValidators.email(l10n, value),
             ),
             const SizedBox(height: Spacing.md),

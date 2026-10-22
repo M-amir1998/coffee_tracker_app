@@ -75,7 +75,10 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                 keyboardType: TextInputType.emailAddress,
                 autofillHints: const [AutofillHints.email, AutofillHints.username],
                 textInputAction: TextInputAction.next,
-                decoration: InputDecoration(labelText: l10n.fieldEmail, prefixIcon: const Icon(Icons.mail_outline_rounded)),
+                decoration: InputDecoration(
+                  labelText: l10n.fieldEmail,
+                  prefixIcon: const Icon(Icons.mail_outline_rounded),
+                ),
                 validator: (value) => AuthValidators.email(l10n, value),
               ),
               const SizedBox(height: Spacing.md),
@@ -110,10 +113,11 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                     : Text(l10n.signInAction),
               ),
               const SizedBox(height: Spacing.md),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Wrap(
+                alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
-                  Flexible(child: Text(l10n.noAccountYet)),
+                  Text(l10n.noAccountYet),
                   TextButton(
                     onPressed: () => context.go(
                       Uri(path: Routes.signUp, queryParameters: next == null ? null : {'next': next}).toString(),
@@ -148,7 +152,9 @@ class _ErrorBanner extends StatelessWidget {
             children: [
               Icon(Icons.error_outline_rounded, color: scheme.onErrorContainer),
               const SizedBox(width: Spacing.sm),
-              Expanded(child: Text(message, style: TextStyle(color: scheme.onErrorContainer))),
+              Expanded(
+                child: Text(message, style: TextStyle(color: scheme.onErrorContainer)),
+              ),
             ],
           ),
         ),

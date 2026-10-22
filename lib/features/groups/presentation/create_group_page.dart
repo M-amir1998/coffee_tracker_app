@@ -35,7 +35,9 @@ class _CreateGroupPageState extends ConsumerState<CreateGroupPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (_cycle.text.isEmpty) _cycle.text = toBeginningOfSentenceCase(DateFormat.yMMMM(context.localeTag).format(DateTime.now()));
+    if (_cycle.text.isEmpty) {
+      _cycle.text = toBeginningOfSentenceCase(DateFormat.yMMMM(context.localeTag).format(DateTime.now()));
+    }
     if (_price.text.isEmpty) _price.text = Money.toInput(20, locale: context.localeTag);
   }
 
@@ -95,7 +97,12 @@ class _CreateGroupPageState extends ConsumerState<CreateGroupPage> {
                 validator: (value) => (value?.trim().isEmpty ?? true) ? l10n.validationNameRequired : null,
               ),
               const SizedBox(height: Spacing.sm),
-              AmountField(controller: _price, label: l10n.fieldCoffeePrice, helper: l10n.coffeePriceHelper, maxCents: 10000),
+              AmountField(
+                controller: _price,
+                label: l10n.fieldCoffeePrice,
+                helper: l10n.coffeePriceHelper,
+                maxCents: 10000,
+              ),
               const SizedBox(height: Spacing.md),
               TimezoneField(initialValue: _timezone, onChanged: (value) => _timezone = value),
               const SizedBox(height: Spacing.md),

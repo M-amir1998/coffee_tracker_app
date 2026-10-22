@@ -105,7 +105,10 @@ class _JoinGroupPageState extends ConsumerState<JoinGroupPage> {
             TextField(
               controller: _code,
               textCapitalization: TextCapitalization.characters,
-              inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[A-Za-z0-9-]')), LengthLimitingTextInputFormatter(9)],
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp('[A-Za-z0-9-]')),
+                LengthLimitingTextInputFormatter(9),
+              ],
               style: theme.textTheme.headlineSmall?.copyWith(letterSpacing: 4),
               decoration: InputDecoration(labelText: l10n.fieldInvitationCode, hintText: 'ABCD-EFGH'),
               onChanged: (_) => setState(() => _preview = null),
@@ -113,7 +116,10 @@ class _JoinGroupPageState extends ConsumerState<JoinGroupPage> {
             ),
             const SizedBox(height: Spacing.md),
             if (_error != null) ...[
-              Semantics(liveRegion: true, child: Text(_error!, style: TextStyle(color: theme.colorScheme.error))),
+              Semantics(
+                liveRegion: true,
+                child: Text(_error!, style: TextStyle(color: theme.colorScheme.error)),
+              ),
               const SizedBox(height: Spacing.sm),
             ],
             if (preview != null && preview.valid) ...[

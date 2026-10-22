@@ -51,9 +51,10 @@ class CoffeeQueueState {
 
   Iterable<PendingCoffee> forGroup(String groupId) => items.where((item) => item.groupId == groupId);
 
-  int waitingCoffees(String groupId) => forGroup(
-    groupId,
-  ).where((item) => item.state == PendingCoffeeState.waiting).fold(0, (sum, item) => sum + item.quantity);
+  int waitingCoffees(String groupId) =>
+      forGroup(groupId)
+          .where((item) => item.state == PendingCoffeeState.waiting)
+          .fold(0, (sum, item) => sum + item.quantity);
 
   List<PendingCoffee> failed(String groupId) =>
       forGroup(groupId).where((item) => item.state == PendingCoffeeState.failed).toList();

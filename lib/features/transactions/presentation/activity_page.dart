@@ -43,7 +43,9 @@ class _ActivityPageState extends ConsumerState<ActivityPage> {
       context: context,
       firstDate: DateTime(now.year - 3),
       lastDate: now,
-      initialDateRange: _filter.from == null ? null : DateTimeRange(start: _filter.from!, end: _filter.to!.subtract(const Duration(days: 1))),
+      initialDateRange: _filter.from == null
+          ? null
+          : DateTimeRange(start: _filter.from!, end: _filter.to!.subtract(const Duration(days: 1))),
     );
     if (range == null) return;
     setState(
@@ -118,7 +120,8 @@ class _ActivityPageState extends ConsumerState<ActivityPage> {
                     decoration: InputDecoration(labelText: l10n.fieldMember, isDense: true),
                     items: [
                       DropdownMenuItem(child: Text(l10n.filterEveryone)),
-                      for (final member in members) DropdownMenuItem(value: member.userId, child: Text(member.displayName)),
+                      for (final member in members)
+                        DropdownMenuItem(value: member.userId, child: Text(member.displayName)),
                     ],
                     onChanged: (value) => setState(() => _filter = _filter.copyWith(memberId: () => value)),
                   ),

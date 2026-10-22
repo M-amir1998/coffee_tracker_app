@@ -72,12 +72,18 @@ class _ReportBody extends StatelessWidget {
         AppCard(
           child: Row(
             children: [
-              Icon(report.isFinal ? Icons.verified_rounded : Icons.timelapse_rounded, color: theme.colorScheme.secondary),
+              Icon(
+                report.isFinal ? Icons.verified_rounded : Icons.timelapse_rounded,
+                color: theme.colorScheme.secondary,
+              ),
               const SizedBox(width: Spacing.sm),
               Expanded(
                 child: Text(
                   report.isFinal
-                      ? l10n.reportFinal(context.shortDate(report.cycle.openedAt), context.shortDate(report.cycle.closedAt!))
+                      ? l10n.reportFinal(
+                          context.shortDate(report.cycle.openedAt),
+                          context.shortDate(report.cycle.closedAt!),
+                        )
                       : l10n.reportLive(context.shortDate(report.cycle.openedAt), context.dateTime(report.generatedAt)),
                 ),
               ),
@@ -88,8 +94,17 @@ class _ReportBody extends StatelessWidget {
         TileGrid(
           children: [
             StatTile(icon: Icons.coffee_rounded, label: l10n.statCoffees, value: context.number(report.totalCoffees)),
-            StatTile(icon: Icons.receipt_rounded, label: l10n.statConsumption, value: money(report.totalConsumptionCents)),
-            StatTile(icon: Icons.inventory_2_rounded, label: l10n.statClosingCash, value: money(cash.closingCashCents), emphasis: true),
+            StatTile(
+              icon: Icons.receipt_rounded,
+              label: l10n.statConsumption,
+              value: money(report.totalConsumptionCents),
+            ),
+            StatTile(
+              icon: Icons.inventory_2_rounded,
+              label: l10n.statClosingCash,
+              value: money(cash.closingCashCents),
+              emphasis: true,
+            ),
           ],
         ),
         const SizedBox(height: Spacing.md),

@@ -48,10 +48,15 @@ class FormScaffold extends StatelessWidget {
               children: [
                 DecoratedBox(
                   decoration: BoxDecoration(color: scheme.secondaryContainer, shape: BoxShape.circle),
-                  child: Padding(padding: const EdgeInsets.all(10), child: Icon(icon, color: scheme.onSecondaryContainer)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Icon(icon, color: scheme.onSecondaryContainer),
+                  ),
                 ),
                 const SizedBox(width: Spacing.sm),
-                Expanded(child: Semantics(header: true, child: Text(title, style: theme.textTheme.headlineSmall))),
+                Expanded(
+                  child: Semantics(header: true, child: Text(title, style: theme.textTheme.headlineSmall)),
+                ),
               ],
             ),
             if (info != null) ...[
@@ -68,7 +73,9 @@ class FormScaffold extends StatelessWidget {
                     children: [
                       Icon(Icons.info_outline_rounded, size: 20, color: scheme.onSurfaceVariant),
                       const SizedBox(width: Spacing.xs),
-                      Expanded(child: Text(info!, style: theme.textTheme.bodySmall?.copyWith(color: scheme.onSurface))),
+                      Expanded(
+                        child: Text(info!, style: theme.textTheme.bodySmall?.copyWith(color: scheme.onSurface)),
+                      ),
                     ],
                   ),
                 ),
@@ -78,7 +85,10 @@ class FormScaffold extends StatelessWidget {
             ...children,
             if (error != null) ...[
               const SizedBox(height: Spacing.sm),
-              Semantics(liveRegion: true, child: Text(error!, style: TextStyle(color: scheme.error))),
+              Semantics(
+                liveRegion: true,
+                child: Text(error!, style: TextStyle(color: scheme.error)),
+              ),
             ],
             const SizedBox(height: Spacing.lg),
             FilledButton(

@@ -193,7 +193,9 @@ class _WideTable extends StatelessWidget {
                         ],
                       ),
                     ),
-                    DataCell(Text(context.number(row.breakdown.coffees), style: const TextStyle(fontFeatures: tabularFigures))),
+                    DataCell(
+                      Text(context.number(row.breakdown.coffees), style: const TextStyle(fontFeatures: tabularFigures)),
+                    ),
                     DataCell(MoneyText(row.breakdown.consumptionCents, currency: currency)),
                     DataCell(MoneyText(row.breakdown.contributionsCents, currency: currency)),
                     DataCell(

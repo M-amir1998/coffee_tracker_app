@@ -59,7 +59,10 @@ class CyclesPage extends ConsumerWidget {
                           Text(
                             cycle.isOpen
                                 ? l10n.cycleOpenSince(context.shortDate(cycle.openedAt))
-                                : l10n.cycleClosedRange(context.shortDate(cycle.openedAt), context.shortDate(cycle.closedAt!)),
+                                : l10n.cycleClosedRange(
+                                    context.shortDate(cycle.openedAt),
+                                    context.shortDate(cycle.closedAt!),
+                                  ),
                             style: theme.textTheme.bodySmall,
                           ),
                         ],

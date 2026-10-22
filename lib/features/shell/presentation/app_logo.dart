@@ -13,7 +13,10 @@ class AppLogo extends StatelessWidget {
     return Semantics(
       image: true,
       label: 'Coffee Tracker',
-      child: SizedBox.square(dimension: size, child: const CustomPaint(painter: LogoPainter())),
+      child: SizedBox.square(
+        dimension: size,
+        child: const CustomPaint(painter: LogoPainter()),
+      ),
     );
   }
 }

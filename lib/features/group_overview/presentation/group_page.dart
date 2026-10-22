@@ -43,7 +43,11 @@ class _GroupPageState extends ConsumerState<GroupPage> {
             child: SegmentedButton<bool>(
               segments: [
                 ButtonSegment(value: false, label: Text(l10n.scopeCycle), icon: const Icon(Icons.event_rounded)),
-                ButtonSegment(value: true, label: Text(l10n.scopeAllTime), icon: const Icon(Icons.all_inclusive_rounded)),
+                ButtonSegment(
+                  value: true,
+                  label: Text(l10n.scopeAllTime),
+                  icon: const Icon(Icons.all_inclusive_rounded),
+                ),
               ],
               selected: {_allTime},
               onSelectionChanged: (value) => setState(() => _allTime = value.first),
@@ -138,7 +142,11 @@ class _Overview extends StatelessWidget {
               value: money(overview.boxPurchasesCents),
               caption: l10n.statBoxPurchasesCaption,
             ),
-            StatTile(icon: Icons.groups_rounded, label: l10n.statActiveMembers, value: context.number(overview.activeMembers)),
+            StatTile(
+              icon: Icons.groups_rounded,
+              label: l10n.statActiveMembers,
+              value: context.number(overview.activeMembers),
+            ),
             if (overview.pending.count > 0)
               StatTile(
                 icon: Icons.schedule_rounded,
@@ -191,7 +199,11 @@ class _MoneyMap extends StatelessWidget {
                   child: Row(
                     children: [
                       for (final (_, cents, color) in parts)
-                        if (cents > 0) Expanded(flex: cents, child: ColoredBox(color: color)),
+                        if (cents > 0)
+                          Expanded(
+                            flex: cents,
+                            child: ColoredBox(color: color),
+                          ),
                     ],
                   ),
                 ),

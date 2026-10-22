@@ -55,9 +55,21 @@ class SettingsPage extends ConsumerWidget {
                 const SizedBox(height: Spacing.xs),
                 SegmentedButton<ThemeMode>(
                   segments: [
-                    ButtonSegment(value: ThemeMode.system, label: Text(l10n.themeSystem), icon: const Icon(Icons.brightness_auto_rounded)),
-                    ButtonSegment(value: ThemeMode.light, label: Text(l10n.themeLight), icon: const Icon(Icons.light_mode_rounded)),
-                    ButtonSegment(value: ThemeMode.dark, label: Text(l10n.themeDark), icon: const Icon(Icons.dark_mode_rounded)),
+                    ButtonSegment(
+                      value: ThemeMode.system,
+                      label: Text(l10n.themeSystem),
+                      icon: const Icon(Icons.brightness_auto_rounded),
+                    ),
+                    ButtonSegment(
+                      value: ThemeMode.light,
+                      label: Text(l10n.themeLight),
+                      icon: const Icon(Icons.light_mode_rounded),
+                    ),
+                    ButtonSegment(
+                      value: ThemeMode.dark,
+                      label: Text(l10n.themeDark),
+                      icon: const Icon(Icons.dark_mode_rounded),
+                    ),
                   ],
                   selected: {prefs.theme},
                   onSelectionChanged: (value) => set(prefs.copyWith(theme: value.first)),
@@ -103,16 +115,36 @@ class SettingsPage extends ConsumerWidget {
             child: Column(
               children: [
                 for (final (title, subtitle, value, apply) in [
-                  (l10n.notifySettlements, l10n.notifySettlementsHint, prefs.notifySettlements,
-                      (bool v) => prefs.copyWith(notifySettlements: v)),
-                  (l10n.notifyApprovals, l10n.notifyApprovalsHint, prefs.notifyApprovals,
-                      (bool v) => prefs.copyWith(notifyApprovals: v)),
-                  (l10n.notifyBalance, l10n.notifyBalanceHint, prefs.notifyBalance,
-                      (bool v) => prefs.copyWith(notifyBalance: v)),
-                  (l10n.notifyCycles, l10n.notifyCyclesHint, prefs.notifyCycles,
-                      (bool v) => prefs.copyWith(notifyCycles: v)),
-                  (l10n.notifyAwards, l10n.notifyAwardsHint, prefs.notifyAwards,
-                      (bool v) => prefs.copyWith(notifyAwards: v)),
+                  (
+                    l10n.notifySettlements,
+                    l10n.notifySettlementsHint,
+                    prefs.notifySettlements,
+                    (bool v) => prefs.copyWith(notifySettlements: v),
+                  ),
+                  (
+                    l10n.notifyApprovals,
+                    l10n.notifyApprovalsHint,
+                    prefs.notifyApprovals,
+                    (bool v) => prefs.copyWith(notifyApprovals: v),
+                  ),
+                  (
+                    l10n.notifyBalance,
+                    l10n.notifyBalanceHint,
+                    prefs.notifyBalance,
+                    (bool v) => prefs.copyWith(notifyBalance: v),
+                  ),
+                  (
+                    l10n.notifyCycles,
+                    l10n.notifyCyclesHint,
+                    prefs.notifyCycles,
+                    (bool v) => prefs.copyWith(notifyCycles: v),
+                  ),
+                  (
+                    l10n.notifyAwards,
+                    l10n.notifyAwardsHint,
+                    prefs.notifyAwards,
+                    (bool v) => prefs.copyWith(notifyAwards: v),
+                  ),
                 ])
                   SwitchListTile(
                     contentPadding: EdgeInsets.zero,
@@ -348,7 +380,8 @@ class _AccountCard extends ConsumerWidget {
             leading: const Icon(Icons.info_outline_rounded),
             title: Text(l10n.aboutApp),
             subtitle: Text(l10n.versionLabel(appVersion)),
-            onTap: () => showLicensePage(context: context, applicationName: l10n.appTitle, applicationVersion: appVersion),
+            onTap: () =>
+                showLicensePage(context: context, applicationName: l10n.appTitle, applicationVersion: appVersion),
           ),
           ListTile(
             contentPadding: EdgeInsets.zero,

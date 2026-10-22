@@ -142,7 +142,9 @@ class _IntegrityCardState extends ConsumerState<_IntegrityCard> {
                   color: result.ok ? finance.owed : finance.owes,
                 ),
                 const SizedBox(width: Spacing.xs),
-                Expanded(child: Text(result.ok ? l10n.integrityOk : l10n.integrityProblems, style: theme.textTheme.titleSmall)),
+                Expanded(
+                  child: Text(result.ok ? l10n.integrityOk : l10n.integrityProblems, style: theme.textTheme.titleSmall),
+                ),
               ],
             ),
             for (final check in result.checks)

@@ -21,7 +21,10 @@ class ActivityTile extends StatelessWidget {
     final scheme = theme.colorScheme;
     final sentence = activitySentence(context, item);
     final status = item.status;
-    final muted = status == TransactionStatus.rejected || status == TransactionStatus.cancelled || status == TransactionStatus.reversed;
+    final muted =
+        status == TransactionStatus.rejected ||
+        status == TransactionStatus.cancelled ||
+        status == TransactionStatus.reversed;
     final subtitleParts = [
       context.dateTime(item.kind == TransactionKind.coffee ? item.occurredAt : item.createdAt),
       if (item.description != null && item.kind != TransactionKind.reversal) item.description!,
@@ -82,7 +85,10 @@ class ActivityTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   if (item.amountCents != null)
-                    MoneyText(item.amountCents!, style: theme.textTheme.titleSmall?.copyWith(color: muted ? scheme.onSurfaceVariant : null)),
+                    MoneyText(
+                      item.amountCents!,
+                      style: theme.textTheme.titleSmall?.copyWith(color: muted ? scheme.onSurfaceVariant : null),
+                    ),
                   if (status != null && status != TransactionStatus.posted) ...[
                     const SizedBox(height: 4),
                     TransactionStatusChip(status),

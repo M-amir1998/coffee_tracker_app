@@ -67,7 +67,11 @@ class _ExportsPageState extends ConsumerState<ExportsPage> {
         l10n.exportBalancesAllTimeHint,
         () async => (
           'balances-all-time-$_stamp.csv',
-          balancesCsv(await reports.memberBalances(group.id, allTime: true), currency: group.currency, scope: 'all_time'),
+          balancesCsv(
+            await reports.memberBalances(group.id, allTime: true),
+            currency: group.currency,
+            scope: 'all_time',
+          ),
         ),
       ),
       (
@@ -90,7 +94,10 @@ class _ExportsPageState extends ConsumerState<ExportsPage> {
         l10n.exportTransactionsHint,
         () async => (
           'transactions-$_stamp.csv',
-          transactionsCsv(await reports.exportTransactions(group.id, from: from, to: to), currency: group.currency),
+          transactionsCsv(
+            await reports.exportTransactions(group.id, from: from, to: to),
+            currency: group.currency,
+          ),
         ),
       ),
       (
@@ -100,7 +107,10 @@ class _ExportsPageState extends ConsumerState<ExportsPage> {
         l10n.exportPurchasesHint,
         () async => (
           'bean-purchases-$_stamp.csv',
-          purchasesCsv(await reports.exportTransactions(group.id, from: from, to: to), currency: group.currency),
+          purchasesCsv(
+            await reports.exportTransactions(group.id, from: from, to: to),
+            currency: group.currency,
+          ),
         ),
       ),
     ];

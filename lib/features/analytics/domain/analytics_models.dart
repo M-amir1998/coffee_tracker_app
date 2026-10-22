@@ -134,11 +134,23 @@ class AnalyticsData {
       daily: json.list('daily').map(DailyPoint.fromJson).toList(),
       weekday: json
           .list('weekday')
-          .map((e) => BucketPoint(bucket: e.integer('weekday'), groupCoffees: e.intOr('group_coffees'), myCoffees: e.intOr('my_coffees')))
+          .map(
+            (e) => BucketPoint(
+              bucket: e.integer('weekday'),
+              groupCoffees: e.intOr('group_coffees'),
+              myCoffees: e.intOr('my_coffees'),
+            ),
+          )
           .toList(),
       hourly: json
           .list('hourly')
-          .map((e) => BucketPoint(bucket: e.integer('hour'), groupCoffees: e.intOr('group_coffees'), myCoffees: e.intOr('my_coffees')))
+          .map(
+            (e) => BucketPoint(
+              bucket: e.integer('hour'),
+              groupCoffees: e.intOr('group_coffees'),
+              myCoffees: e.intOr('my_coffees'),
+            ),
+          )
           .toList(),
       cashBox: json
           .list('cash_box')

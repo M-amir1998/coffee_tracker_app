@@ -142,9 +142,8 @@ class SettlementPlan {
 
   bool get isSettled => suggestions.isEmpty && unsettledCredits.isEmpty;
 
-  int get reimbursedFromBoxCents => suggestions
-      .where((s) => s.type == SuggestionType.reimbursement)
-      .fold(0, (sum, s) => sum + s.amountCents);
+  int get reimbursedFromBoxCents =>
+      suggestions.where((s) => s.type == SuggestionType.reimbursement).fold(0, (sum, s) => sum + s.amountCents);
 }
 
 class _Position {

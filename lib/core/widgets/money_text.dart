@@ -8,7 +8,14 @@ const tabularFigures = [FontFeature.tabularFigures()];
 /// A money amount with tabular figures. With [colorBySign] a member balance is
 /// colored by its meaning: owes (positive), owed (negative) or settled.
 class MoneyText extends StatelessWidget {
-  const MoneyText(this.cents, {super.key, this.style, this.colorBySign = false, this.signed = false, this.currency = 'EUR'});
+  const MoneyText(
+    this.cents, {
+    super.key,
+    this.style,
+    this.colorBySign = false,
+    this.signed = false,
+    this.currency = 'EUR',
+  });
 
   final int cents;
   final TextStyle? style;

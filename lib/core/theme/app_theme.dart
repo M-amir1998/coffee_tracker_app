@@ -92,11 +92,8 @@ abstract final class AppTheme {
       scheme.brightness == Brightness.light ? scheme.surfaceContainerLowest : scheme.surfaceContainerLow;
 
   static TextTheme _textTheme(ColorScheme scheme) {
-    final base = Typography.material2021(platform: TargetPlatform.android).black.apply(
-      fontFamily: bodyFont,
-      bodyColor: scheme.onSurface,
-      displayColor: scheme.onSurface,
-    );
+    final base = Typography.material2021(platform: TargetPlatform.android).black
+        .apply(fontFamily: bodyFont, bodyColor: scheme.onSurface, displayColor: scheme.onSurface);
     TextStyle display(TextStyle? style, double size, FontWeight weight, {double height = 1.15}) =>
         (style ?? const TextStyle()).copyWith(
           fontFamily: displayFont,

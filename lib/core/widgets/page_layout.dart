@@ -46,7 +46,10 @@ class AppPage extends StatelessWidget {
           pinned: true,
           automaticallyImplyLeading: canPop,
           title: Semantics(header: true, child: Text(title)),
-          actions: [...actions, const SizedBox(width: Spacing.xs)],
+          actions: [
+            ...actions,
+            const SizedBox(width: Spacing.xs),
+          ],
           bottom: subtitle == null
               ? null
               : PreferredSize(
@@ -67,20 +70,32 @@ class AppPage extends StatelessWidget {
           padding: gutters(context),
           sliver: SliverToBoxAdapter(
             child: Center(
-              child: ConstrainedBox(constraints: BoxConstraints(maxWidth: maxWidth), child: body),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: maxWidth),
+                child: body,
+              ),
             ),
           ),
         ),
       ],
     );
     if (onRefresh != null) content = RefreshIndicator(onRefresh: onRefresh!, child: content);
-    return Scaffold(body: SafeArea(bottom: false, child: content), floatingActionButton: floatingActionButton);
+    return Scaffold(
+      body: SafeArea(bottom: false, child: content),
+      floatingActionButton: floatingActionButton,
+    );
   }
 }
 
 /// Lays children out in 1-3 columns depending on the available width.
 class ResponsiveColumns extends StatelessWidget {
-  const ResponsiveColumns({required this.children, super.key, this.minColumnWidth = 360, this.maxColumns = 3, this.spacing = Spacing.md});
+  const ResponsiveColumns({
+    required this.children,
+    super.key,
+    this.minColumnWidth = 360,
+    this.maxColumns = 3,
+    this.spacing = Spacing.md,
+  });
 
   final List<Widget> children;
   final double minColumnWidth;
@@ -113,7 +128,10 @@ class ResponsiveColumns extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    for (var i = 0; i < buckets[c].length; i++) ...[if (i > 0) SizedBox(height: spacing), buckets[c][i]],
+                    for (var i = 0; i < buckets[c].length; i++) ...[
+                      if (i > 0) SizedBox(height: spacing),
+                      buckets[c][i],
+                    ],
                   ],
                 ),
               ),

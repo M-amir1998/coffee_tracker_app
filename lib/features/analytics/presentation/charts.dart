@@ -23,7 +23,8 @@ double _niceMax(double max) {
 }
 
 TextStyle _axisStyle(BuildContext context) =>
-    Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 11, color: Theme.of(context).colorScheme.onSurfaceVariant);
+    Theme.of(context).textTheme.bodySmall!
+        .copyWith(fontSize: 11, color: Theme.of(context).colorScheme.onSurfaceVariant);
 
 /// Grouped bar chart with labelled axes and tooltips.
 class SimpleBarChart extends StatelessWidget {
@@ -81,7 +82,8 @@ class SimpleBarChart extends StatelessWidget {
             gridData: FlGridData(
               drawVerticalLine: false,
               horizontalInterval: maxY / 4,
-              getDrawingHorizontalLine: (_) => FlLine(color: scheme.outlineVariant.withValues(alpha: 0.6), strokeWidth: 1),
+              getDrawingHorizontalLine: (_) =>
+                  FlLine(color: scheme.outlineVariant.withValues(alpha: 0.6), strokeWidth: 1),
             ),
             borderData: FlBorderData(show: false),
             titlesData: FlTitlesData(
@@ -92,8 +94,10 @@ class SimpleBarChart extends StatelessWidget {
                   showTitles: true,
                   reservedSize: 40,
                   interval: maxY / 4,
-                  getTitlesWidget: (value, meta) =>
-                      SideTitleWidget(meta: meta, child: Text(format(value), style: _axisStyle(context))),
+                  getTitlesWidget: (value, meta) => SideTitleWidget(
+                    meta: meta,
+                    child: Text(format(value), style: _axisStyle(context)),
+                  ),
                 ),
               ),
               bottomTitles: AxisTitles(
@@ -103,7 +107,10 @@ class SimpleBarChart extends StatelessWidget {
                   getTitlesWidget: (value, meta) {
                     final index = value.toInt();
                     if (index < 0 || index >= labels.length || index % labelEvery != 0) return const SizedBox.shrink();
-                    return SideTitleWidget(meta: meta, child: Text(labels[index], style: _axisStyle(context)));
+                    return SideTitleWidget(
+                      meta: meta,
+                      child: Text(labels[index], style: _axisStyle(context)),
+                    );
                   },
                 ),
               ),
@@ -185,7 +192,8 @@ class TrendLineChart extends StatelessWidget {
             gridData: FlGridData(
               drawVerticalLine: false,
               horizontalInterval: (maxY - minY) / 4,
-              getDrawingHorizontalLine: (_) => FlLine(color: scheme.outlineVariant.withValues(alpha: 0.6), strokeWidth: 1),
+              getDrawingHorizontalLine: (_) =>
+                  FlLine(color: scheme.outlineVariant.withValues(alpha: 0.6), strokeWidth: 1),
             ),
             borderData: FlBorderData(show: false),
             titlesData: FlTitlesData(
@@ -196,8 +204,10 @@ class TrendLineChart extends StatelessWidget {
                   showTitles: true,
                   reservedSize: 48,
                   interval: (maxY - minY) / 4,
-                  getTitlesWidget: (value, meta) =>
-                      SideTitleWidget(meta: meta, child: Text(format(value), style: _axisStyle(context))),
+                  getTitlesWidget: (value, meta) => SideTitleWidget(
+                    meta: meta,
+                    child: Text(format(value), style: _axisStyle(context)),
+                  ),
                 ),
               ),
               bottomTitles: AxisTitles(
@@ -210,7 +220,10 @@ class TrendLineChart extends StatelessWidget {
                     if (value != index || index < 0 || index >= labels.length || index % labelEvery != 0) {
                       return const SizedBox.shrink();
                     }
-                    return SideTitleWidget(meta: meta, child: Text(labels[index], style: _axisStyle(context)));
+                    return SideTitleWidget(
+                      meta: meta,
+                      child: Text(labels[index], style: _axisStyle(context)),
+                    );
                   },
                 ),
               ),

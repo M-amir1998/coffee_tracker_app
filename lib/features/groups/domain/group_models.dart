@@ -146,9 +146,7 @@ class Invitation {
   final DateTime createdAt;
 
   bool isActiveAt(DateTime now) =>
-      revokedAt == null &&
-      (expiresAt == null || expiresAt!.isAfter(now)) &&
-      (maxUses == null || useCount < maxUses!);
+      revokedAt == null && (expiresAt == null || expiresAt!.isAfter(now)) && (maxUses == null || useCount < maxUses!);
 
   /// Code formatted for reading aloud, e.g. `ABCD-EFGH`.
   String get displayCode => code.length == 8 ? '${code.substring(0, 4)}-${code.substring(4)}' : code;

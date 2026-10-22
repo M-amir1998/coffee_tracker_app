@@ -61,10 +61,7 @@ class GroupSwitcher extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(current.name, style: theme.textTheme.titleSmall, overflow: TextOverflow.ellipsis),
-                      Text(
-                        l10n.membersCount(current.memberCount),
-                        style: theme.textTheme.bodySmall,
-                      ),
+                      Text(l10n.membersCount(current.memberCount), style: theme.textTheme.bodySmall),
                     ],
                   ),
                 ),

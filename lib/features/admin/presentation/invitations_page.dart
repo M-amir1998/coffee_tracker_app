@@ -96,14 +96,16 @@ class _InvitationsPageState extends ConsumerState<InvitationsPage> {
                       value: _maxUses,
                       items: [
                         DropdownMenuItem(child: Text(l10n.unlimitedUses)),
-                        for (final uses in [1, 5, 10, 25, 50]) DropdownMenuItem(value: uses, child: Text(l10n.maxUses(uses))),
+                        for (final uses in [1, 5, 10, 25, 50])
+                          DropdownMenuItem(value: uses, child: Text(l10n.maxUses(uses))),
                       ],
                       onChanged: (value) => setState(() => _maxUses = value),
                     ),
                     DropdownButton<int>(
                       value: _days,
                       items: [
-                        for (final days in [1, 7, 14, 30, 90]) DropdownMenuItem(value: days, child: Text(l10n.validDays(days))),
+                        for (final days in [1, 7, 14, 30, 90])
+                          DropdownMenuItem(value: days, child: Text(l10n.validDays(days))),
                       ],
                       onChanged: (value) => setState(() => _days = value ?? 14),
                     ),
@@ -138,7 +140,10 @@ class _InvitationsPageState extends ConsumerState<InvitationsPage> {
                                     children: [
                                       SelectableText(
                                         invitation.displayCode,
-                                        style: theme.textTheme.headlineSmall?.copyWith(letterSpacing: 3, fontFamily: 'Inter'),
+                                        style: theme.textTheme.headlineSmall?.copyWith(
+                                          letterSpacing: 3,
+                                          fontFamily: 'Inter',
+                                        ),
                                       ),
                                       Text(
                                         [

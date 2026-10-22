@@ -76,7 +76,11 @@ class WelcomePage extends ConsumerWidget {
                         ],
                       ),
                     )
-                  else ...[choices[0], const SizedBox(height: Spacing.md), choices[1]],
+                  else ...[
+                    choices[0],
+                    const SizedBox(height: Spacing.md),
+                    choices[1],
+                  ],
                   const SizedBox(height: Spacing.xl),
                   TextButton.icon(
                     onPressed: () => unawaited(ref.read(authRepositoryProvider).signOut()),

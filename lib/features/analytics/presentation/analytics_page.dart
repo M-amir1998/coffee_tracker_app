@@ -81,7 +81,11 @@ class _AnalyticsPageState extends ConsumerState<AnalyticsPage> {
                 (_Preset.quarter, l10n.range90Days),
                 (_Preset.year, l10n.range12Months),
               ])
-                ChoiceChip(label: Text(label), selected: _preset == preset, onSelected: (_) => setState(() => _preset = preset)),
+                ChoiceChip(
+                  label: Text(label),
+                  selected: _preset == preset,
+                  onSelected: (_) => setState(() => _preset = preset),
+                ),
               ChoiceChip(
                 avatar: const Icon(Icons.date_range_rounded, size: 18),
                 label: Text(l10n.rangeCustom),
@@ -142,7 +146,11 @@ class _AnalyticsContent extends StatelessWidget {
             labelEvery: every,
             semanticLabel: l10n.chartConsumptionSemantic(data.groupCoffees, data.myCoffees),
             series: [
-              BarSeries(label: l10n.seriesGroup, values: [for (final p in trend) p.groupCoffees.toDouble()], color: groupColor),
+              BarSeries(
+                label: l10n.seriesGroup,
+                values: [for (final p in trend) p.groupCoffees.toDouble()],
+                color: groupColor,
+              ),
               BarSeries(label: l10n.seriesYou, values: [for (final p in trend) p.myCoffees.toDouble()], color: myColor),
             ],
           ),
@@ -157,8 +165,16 @@ class _AnalyticsContent extends StatelessWidget {
         labels: [for (final b in data.weekday) context.weekdayShort(b.bucket)],
         semanticLabel: l10n.chartByWeekday,
         series: [
-          BarSeries(label: l10n.seriesGroup, values: [for (final b in data.weekday) b.groupCoffees.toDouble()], color: groupColor),
-          BarSeries(label: l10n.seriesYou, values: [for (final b in data.weekday) b.myCoffees.toDouble()], color: myColor),
+          BarSeries(
+            label: l10n.seriesGroup,
+            values: [for (final b in data.weekday) b.groupCoffees.toDouble()],
+            color: groupColor,
+          ),
+          BarSeries(
+            label: l10n.seriesYou,
+            values: [for (final b in data.weekday) b.myCoffees.toDouble()],
+            color: myColor,
+          ),
         ],
       ),
     );
@@ -171,7 +187,11 @@ class _AnalyticsContent extends StatelessWidget {
         labelEvery: 3,
         semanticLabel: l10n.chartByHour,
         series: [
-          BarSeries(label: l10n.seriesGroup, values: [for (final b in data.hourly) b.groupCoffees.toDouble()], color: groupColor),
+          BarSeries(
+            label: l10n.seriesGroup,
+            values: [for (final b in data.hourly) b.groupCoffees.toDouble()],
+            color: groupColor,
+          ),
         ],
       ),
     );
@@ -184,7 +204,12 @@ class _AnalyticsContent extends StatelessWidget {
         valueFormatter: euros,
         semanticLabel: l10n.chartSpendingSemantic(context.money(data.groupSpendCents, currency: currency)),
         series: [
-          LineSeries(label: l10n.seriesGroup, values: [for (final p in trend) p.groupSpendCents.toDouble()], color: groupColor, filled: true),
+          LineSeries(
+            label: l10n.seriesGroup,
+            values: [for (final p in trend) p.groupSpendCents.toDouble()],
+            color: groupColor,
+            filled: true,
+          ),
           LineSeries(label: l10n.seriesYou, values: [for (final p in trend) p.mySpendCents.toDouble()], color: myColor),
         ],
       ),
@@ -216,7 +241,11 @@ class _AnalyticsContent extends StatelessWidget {
       children: [
         TileGrid(
           children: [
-            StatTile(icon: Icons.coffee_rounded, label: l10n.statGroupCoffees, value: context.number(data.groupCoffees)),
+            StatTile(
+              icon: Icons.coffee_rounded,
+              label: l10n.statGroupCoffees,
+              value: context.number(data.groupCoffees),
+            ),
             StatTile(icon: Icons.person_rounded, label: l10n.statMyCoffees, value: context.number(data.myCoffees)),
             StatTile(
               icon: Icons.euro_rounded,
@@ -295,7 +324,9 @@ class _CycleComparison extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            previous == null ? l10n.compareNoPrevious(current.cycle.name) : l10n.compareSubtitle(current.cycle.name, previous.cycle.name),
+            previous == null
+                ? l10n.compareNoPrevious(current.cycle.name)
+                : l10n.compareSubtitle(current.cycle.name, previous.cycle.name),
             style: theme.textTheme.bodySmall,
           ),
           const SizedBox(height: Spacing.sm),

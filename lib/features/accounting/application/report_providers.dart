@@ -19,9 +19,7 @@ final dashboardProvider = FutureProvider.autoDispose.family<Dashboard, String>((
 
 final overviewProvider = FutureProvider.autoDispose.family<GroupOverview, BalanceScope>((ref, scope) {
   ref.watch(dataRevisionProvider);
-  return ref
-      .watch(reportsRepositoryProvider)
-      .overview(scope.groupId, cycleId: scope.cycleId, allTime: scope.allTime);
+  return ref.watch(reportsRepositoryProvider).overview(scope.groupId, cycleId: scope.cycleId, allTime: scope.allTime);
 });
 
 final memberBalancesProvider = FutureProvider.autoDispose.family<List<MemberBalance>, BalanceScope>((ref, scope) {
@@ -110,7 +108,9 @@ class ActivityFeed extends AsyncNotifier<ActivityFeedPage> {
   @override
   Future<ActivityFeedPage> build() async {
     ref.watch(dataRevisionProvider);
-    final items = await ref.watch(reportsRepositoryProvider).activity(args.groupId, filter: args.filter, limit: pageSize);
+    final items = await ref
+        .watch(reportsRepositoryProvider)
+        .activity(args.groupId, filter: args.filter, limit: pageSize);
     return ActivityFeedPage(items: items, hasMore: items.length == pageSize);
   }
 

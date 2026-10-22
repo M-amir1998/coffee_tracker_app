@@ -89,7 +89,10 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                 keyboardType: TextInputType.emailAddress,
                 autofillHints: const [AutofillHints.email],
                 textInputAction: TextInputAction.next,
-                decoration: InputDecoration(labelText: l10n.fieldEmail, prefixIcon: const Icon(Icons.mail_outline_rounded)),
+                decoration: InputDecoration(
+                  labelText: l10n.fieldEmail,
+                  prefixIcon: const Icon(Icons.mail_outline_rounded),
+                ),
                 validator: (value) => AuthValidators.email(l10n, value),
               ),
               const SizedBox(height: Spacing.md),
@@ -111,13 +114,17 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                     : Text(l10n.signUpAction),
               ),
               const SizedBox(height: Spacing.md),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Wrap(
+                alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
-                  Flexible(child: Text(l10n.alreadyHaveAccount)),
+                  Text(l10n.alreadyHaveAccount),
                   TextButton(
                     onPressed: () => context.go(
-                      Uri(path: Routes.signIn, queryParameters: widget.next == null ? null : {'next': widget.next}).toString(),
+                      Uri(
+                        path: Routes.signIn,
+                        queryParameters: widget.next == null ? null : {'next': widget.next},
+                      ).toString(),
                     ),
                     child: Text(l10n.signInLink),
                   ),

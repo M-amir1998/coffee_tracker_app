@@ -89,7 +89,10 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
               TextFormField(
                 controller: _email,
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(labelText: l10n.fieldEmail, prefixIcon: const Icon(Icons.mail_outline_rounded)),
+                decoration: InputDecoration(
+                  labelText: l10n.fieldEmail,
+                  prefixIcon: const Icon(Icons.mail_outline_rounded),
+                ),
                 validator: (value) => AuthValidators.email(l10n, value),
               ),
               const SizedBox(height: Spacing.md),
@@ -120,8 +123,7 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
                   ? const SizedBox.square(dimension: 20, child: CircularProgressIndicator(strokeWidth: 2))
                   : Text(l10n.savePassword),
             ),
-            if (!viaLink)
-              TextButton(onPressed: () => context.go(Routes.signIn), child: Text(l10n.backToSignIn)),
+            if (!viaLink) TextButton(onPressed: () => context.go(Routes.signIn), child: Text(l10n.backToSignIn)),
           ],
         ),
       ),

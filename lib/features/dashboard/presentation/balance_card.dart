@@ -36,7 +36,12 @@ class BalanceCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          // Wraps instead of overflowing with large text or long cycle names.
+          Wrap(
+            spacing: Spacing.sm,
+            runSpacing: Spacing.xs,
+            alignment: WrapAlignment.spaceBetween,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               DecoratedBox(
                 decoration: BoxDecoration(color: container, borderRadius: BorderRadius.circular(Radii.pill)),
@@ -45,8 +50,10 @@ class BalanceCard extends StatelessWidget {
                   child: Text(dashboard.cycle.name, style: theme.textTheme.labelMedium?.copyWith(color: color)),
                 ),
               ),
-              const Spacer(),
-              Text(l10n.pricePerCoffee(context.money(dashboard.priceCents, currency: currency)), style: theme.textTheme.bodySmall),
+              Text(
+                l10n.pricePerCoffee(context.money(dashboard.priceCents, currency: currency)),
+                style: theme.textTheme.bodySmall,
+              ),
             ],
           ),
           const SizedBox(height: Spacing.md),
@@ -70,15 +77,28 @@ class BalanceCard extends StatelessWidget {
             runSpacing: Spacing.sm,
             children: [
               _Figure(label: l10n.figureCoffees, value: context.number(balance.coffees)),
-              _Figure(label: l10n.figureConsumption, value: context.money(balance.consumptionCents, currency: currency)),
-              _Figure(label: l10n.figureContributed, value: context.money(balance.contributionsCents, currency: currency)),
+              _Figure(
+                label: l10n.figureConsumption,
+                value: context.money(balance.consumptionCents, currency: currency),
+              ),
+              _Figure(
+                label: l10n.figureContributed,
+                value: context.money(balance.contributionsCents, currency: currency),
+              ),
               if (balance.transfersSentCents != 0 || balance.transfersReceivedCents != 0)
                 _Figure(
                   label: l10n.figureSettlements,
-                  value: context.money(balance.transfersReceivedCents - balance.transfersSentCents, currency: currency, signed: true),
+                  value: context.money(
+                    balance.transfersReceivedCents - balance.transfersSentCents,
+                    currency: currency,
+                    signed: true,
+                  ),
                 ),
               if (balance.reimbursementsCents != 0)
-                _Figure(label: l10n.figureReimbursed, value: context.money(balance.reimbursementsCents, currency: currency)),
+                _Figure(
+                  label: l10n.figureReimbursed,
+                  value: context.money(balance.reimbursementsCents, currency: currency),
+                ),
             ],
           ),
           if (balance.openingCents != 0) ...[

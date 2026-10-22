@@ -36,10 +36,7 @@ class GroupRepository {
   Future<void> leaveGroup(String groupId) => _client.call('leave_group', {'p_group_id': groupId});
 
   Future<List<Member>> members(String groupId, {bool includeInactive = false}) async {
-    final rows = await _client.callList('get_members', {
-      'p_group_id': groupId,
-      'p_include_inactive': includeInactive,
-    });
+    final rows = await _client.callList('get_members', {'p_group_id': groupId, 'p_include_inactive': includeInactive});
     return rows.map(Member.fromJson).toList();
   }
 
@@ -61,7 +58,12 @@ class GroupRepository {
     });
   }
 
-  Future<Invitation> createInvitation(String groupId, {MemberRole role = MemberRole.member, int? maxUses, int? expiresInDays = 14}) async {
+  Future<Invitation> createInvitation(
+    String groupId, {
+    MemberRole role = MemberRole.member,
+    int? maxUses,
+    int? expiresInDays = 14,
+  }) async {
     final json = await _client.callJson('create_invitation', {
       'p_group_id': groupId,
       'p_role': role.name,

@@ -30,5 +30,4 @@ extension JsonRead on Json {
 
 Json asJson(Object? value) => (value as Map).cast<String, dynamic>();
 
-List<Json> asJsonList(Object? value) =>
-    ((value as List?) ?? const <Object?>[]).map(asJson).toList(growable: false);
+List<Json> asJsonList(Object? value) => ((value as List?) ?? const <Object?>[]).map(asJson).toList(growable: false);

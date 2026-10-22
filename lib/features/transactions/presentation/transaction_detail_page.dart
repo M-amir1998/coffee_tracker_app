@@ -67,12 +67,15 @@ class _Summary extends StatelessWidget {
       if (item.kind == TransactionKind.coffee && item.quantity != null && item.unitPriceCents != null)
         (l10n.factCoffees, l10n.coffeesAtPrice(item.quantity!, context.money(item.unitPriceCents!))),
       if (item.memberName != null)
-        (switch (item.kind) {
-          TransactionKind.transfer => l10n.factFrom,
-          TransactionKind.reimbursement => l10n.factReimbursedMember,
-          TransactionKind.purchasePersonal || TransactionKind.purchaseBox => l10n.factBuyer,
-          _ => l10n.factMember,
-        }, item.memberName!),
+        (
+          switch (item.kind) {
+            TransactionKind.transfer => l10n.factFrom,
+            TransactionKind.reimbursement => l10n.factReimbursedMember,
+            TransactionKind.purchasePersonal || TransactionKind.purchaseBox => l10n.factBuyer,
+            _ => l10n.factMember,
+          },
+          item.memberName!,
+        ),
       if (item.counterpartyName != null) (l10n.factTo, item.counterpartyName!),
       if (item.initiatorName != null) (l10n.factRecordedBy, item.initiatorName!),
       (item.kind == TransactionKind.coffee ? l10n.factDrunkAt : l10n.factDate, context.dateTime(item.occurredAt)),
@@ -160,9 +163,7 @@ class _ActionsState extends ConsumerState<_Actions> {
     final buttons = <Widget>[
       if (p.canDecide) ...[
         FilledButton.icon(
-          onPressed: _busy
-              ? null
-              : () => unawaited(_run(() => ledger.respond(id, approve: true), l10n.confirmedToast)),
+          onPressed: _busy ? null : () => unawaited(_run(() => ledger.respond(id, approve: true), l10n.confirmedToast)),
           icon: const Icon(Icons.check_rounded),
           label: Text(item.kind == TransactionKind.transfer ? l10n.confirmReceived : l10n.approve),
         ),
@@ -177,7 +178,9 @@ class _ActionsState extends ConsumerState<_Actions> {
                     confirmLabel: l10n.reject,
                     destructive: true,
                   );
-                  if (note != null) await _run(() => ledger.respond(id, approve: false, note: note), l10n.rejectedToast);
+                  if (note != null) {
+                    await _run(() => ledger.respond(id, approve: false, note: note), l10n.rejectedToast);
+                  }
                 },
           icon: const Icon(Icons.close_rounded),
           label: Text(l10n.reject),
@@ -328,7 +331,10 @@ class _History extends StatelessWidget {
                         children: [
                           Text(_statusText(l10n, event), style: theme.textTheme.titleSmall),
                           Text(
-                            [if (event.actorName != null) event.actorName!, context.dateTime(event.createdAt)].join(' · '),
+                            [
+                              if (event.actorName != null) event.actorName!,
+                              context.dateTime(event.createdAt),
+                            ].join(' · '),
                             style: theme.textTheme.bodySmall,
                           ),
                           if (event.note != null) ...[const SizedBox(height: 2), Text('“${event.note!}”')],

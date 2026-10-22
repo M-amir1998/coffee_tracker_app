@@ -61,7 +61,10 @@ class _CoffeeButtonState extends ConsumerState<CoffeeButton> with SingleTickerPr
     final scheme = theme.colorScheme;
     final press = TweenSequence<double>([
       TweenSequenceItem(tween: Tween<double>(begin: 1, end: 0.94).chain(CurveTween(curve: Curves.easeOut)), weight: 35),
-      TweenSequenceItem(tween: Tween<double>(begin: 0.94, end: 1).chain(CurveTween(curve: Curves.elasticOut)), weight: 65),
+      TweenSequenceItem(
+        tween: Tween<double>(begin: 0.94, end: 1).chain(CurveTween(curve: Curves.elasticOut)),
+        weight: 65,
+      ),
     ]).animate(_pulse);
 
     return Column(
@@ -69,31 +72,36 @@ class _CoffeeButtonState extends ConsumerState<CoffeeButton> with SingleTickerPr
       children: [
         ScaleTransition(
           scale: press,
-          child: Semantics(
-            button: true,
-            label: l10n.addCoffeeSemantic(widget.priceLabel),
-            excludeSemantics: true,
-            child: SizedBox(
-              height: 76,
-              child: FilledButton(
-                key: const Key('add-coffee-button'),
-                style: FilledButton.styleFrom(
-                  backgroundColor: _success ? scheme.tertiary : scheme.primary,
-                  foregroundColor: _success ? scheme.onTertiary : scheme.onPrimary,
-                  textStyle: theme.textTheme.titleLarge,
-                ),
-                onPressed: _busy ? null : () => unawaited(_record()),
-                child: AnimatedSwitcher(
-                  duration: Motion.of(context, Motion.medium),
-                  transitionBuilder: (child, animation) => ScaleTransition(scale: animation, child: child),
-                  child: Row(
-                    key: ValueKey(_success),
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(_success ? Icons.check_circle_rounded : Icons.coffee_rounded, size: 30),
-                      const SizedBox(width: Spacing.sm),
-                      Text(_success ? l10n.coffeeAdded : l10n.addCoffee),
-                    ],
+          child: SizedBox(
+            height: 76,
+            child: FilledButton(
+              key: const Key('add-coffee-button'),
+              style: FilledButton.styleFrom(
+                backgroundColor: _success ? scheme.tertiary : scheme.primary,
+                foregroundColor: _success ? scheme.onTertiary : scheme.onPrimary,
+                textStyle: theme.textTheme.titleLarge,
+              ),
+              onPressed: _busy ? null : () => unawaited(_record()),
+              child: AnimatedSwitcher(
+                duration: Motion.of(context, Motion.medium),
+                transitionBuilder: (child, animation) => ScaleTransition(scale: animation, child: child),
+                // Scales down instead of overflowing with very large text. The
+                // label merges into the button, which keeps its tap action
+                // for screen readers.
+                child: Semantics(
+                  key: ValueKey(_success),
+                  label: _success ? l10n.coffeeAdded : l10n.addCoffeeSemantic(widget.priceLabel),
+                  excludeSemantics: true,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(_success ? Icons.check_circle_rounded : Icons.coffee_rounded, size: 30),
+                        const SizedBox(width: Spacing.sm),
+                        Text(_success ? l10n.coffeeAdded : l10n.addCoffee),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -104,10 +112,7 @@ class _CoffeeButtonState extends ConsumerState<CoffeeButton> with SingleTickerPr
         Row(
           children: [
             Expanded(
-              child: Text(
-                l10n.todayCoffees(widget.todayCoffees, widget.priceLabel),
-                style: theme.textTheme.bodySmall,
-              ),
+              child: Text(l10n.todayCoffees(widget.todayCoffees, widget.priceLabel), style: theme.textTheme.bodySmall),
             ),
             TextButton.icon(
               onPressed: _busy ? null : () => unawaited(_several()),
@@ -217,7 +222,10 @@ class PendingCoffeesBanner extends ConsumerWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextButton(onPressed: () => unawaited(controller.retry(item.key)), child: Text(l10n.actionRetry)),
-                TextButton(onPressed: () => unawaited(controller.removeQueued(item.key)), child: Text(l10n.actionDiscard)),
+                TextButton(
+                  onPressed: () => unawaited(controller.removeQueued(item.key)),
+                  child: Text(l10n.actionDiscard),
+                ),
               ],
             ),
           ),

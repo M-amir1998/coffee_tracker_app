@@ -36,9 +36,7 @@ class MemberDetailPage extends ConsumerWidget {
     if (group == null) return const SizedBox.shrink();
     final cycle = ref.watch(memberBalancesProvider((groupId: group.id, cycleId: null, allTime: false)));
     final allTime = ref.watch(memberBalancesProvider((groupId: group.id, cycleId: null, allTime: true)));
-    final activity = ref.watch(
-      activityFeedProvider((groupId: group.id, filter: ActivityFilter(memberId: userId))),
-    );
+    final activity = ref.watch(activityFeedProvider((groupId: group.id, filter: ActivityFilter(memberId: userId))));
 
     MemberBalance? find(List<MemberBalance>? rows) => rows?.where((r) => r.userId == userId).firstOrNull;
     final current = find(cycle.value);
@@ -71,7 +69,9 @@ class MemberDetailPage extends ConsumerWidget {
                   value: activity,
                   data: (page) => page.items.isEmpty
                       ? EmptyState(icon: Icons.receipt_long_outlined, title: l10n.activityEmptyTitle)
-                      : Column(children: [for (final item in page.items.take(15)) ActivityTile(item: item, dense: true)]),
+                      : Column(
+                          children: [for (final item in page.items.take(15)) ActivityTile(item: item, dense: true)],
+                        ),
                 ),
               ),
             ],
@@ -125,15 +125,17 @@ class _Header extends ConsumerWidget {
           ),
           const SizedBox(height: Spacing.lg),
           Text(l10n.netBalanceLabel, style: theme.textTheme.labelLarge),
-          MoneyText(net, currency: currency, colorBySign: true, style: theme.textTheme.displaySmall?.copyWith(fontFamily: 'Inter')),
-          Text(
-            switch (member.status) {
-              BalanceStatus.owes => l10n.memberOwesExplanation(member.displayName),
-              BalanceStatus.owed => l10n.memberOwedExplanation(member.displayName),
-              BalanceStatus.settled => l10n.memberSettledExplanation(member.displayName),
-            },
-            style: theme.textTheme.bodySmall,
+          MoneyText(
+            net,
+            currency: currency,
+            colorBySign: true,
+            style: theme.textTheme.displaySmall?.copyWith(fontFamily: 'Inter'),
           ),
+          Text(switch (member.status) {
+            BalanceStatus.owes => l10n.memberOwesExplanation(member.displayName),
+            BalanceStatus.owed => l10n.memberOwedExplanation(member.displayName),
+            BalanceStatus.settled => l10n.memberSettledExplanation(member.displayName),
+          }, style: theme.textTheme.bodySmall),
           const SizedBox(height: Spacing.md),
           Wrap(
             spacing: Spacing.sm,
@@ -166,7 +168,10 @@ class _Header extends ConsumerWidget {
               if (role.isAdmin)
                 OutlinedButton.icon(
                   onPressed: () => unawaited(
-                    showAdaptiveSheet<void>(context, builder: (_) => AdjustmentForm(groupId: groupId, member: member)),
+                    showAdaptiveSheet<void>(
+                      context,
+                      builder: (_) => AdjustmentForm(groupId: groupId, member: member),
+                    ),
                   ),
                   icon: const Icon(Icons.tune_rounded),
                   label: Text(l10n.adjustBalance),
@@ -224,11 +229,7 @@ class _BreakdownCard extends StatelessWidget {
             defaultVerticalAlignment: TableCellVerticalAlignment.middle,
             children: [
               TableRow(
-                children: [
-                  const SizedBox.shrink(),
-                  _HeaderCell(l10n.scopeCycle),
-                  _HeaderCell(l10n.scopeAllTime),
-                ],
+                children: [const SizedBox.shrink(), _HeaderCell(l10n.scopeCycle), _HeaderCell(l10n.scopeAllTime)],
               ),
               for (final (label, read, money) in rows)
                 TableRow(
@@ -239,7 +240,9 @@ class _BreakdownCard extends StatelessWidget {
                   ],
                 ),
               TableRow(
-                decoration: BoxDecoration(border: Border(top: BorderSide(color: theme.colorScheme.outlineVariant))),
+                decoration: BoxDecoration(
+                  border: Border(top: BorderSide(color: theme.colorScheme.outlineVariant)),
+                ),
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
@@ -281,7 +284,8 @@ class _ValueCell extends StatelessWidget {
     child: Text(
       text,
       textAlign: TextAlign.end,
-      style: (bold ? Theme.of(context).textTheme.titleSmall : null)?.copyWith(fontFeatures: tabularFigures) ??
+      style:
+          (bold ? Theme.of(context).textTheme.titleSmall : null)?.copyWith(fontFeatures: tabularFigures) ??
           const TextStyle(fontFeatures: tabularFigures),
     ),
   );
