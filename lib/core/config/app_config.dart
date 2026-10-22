@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 /// Compile-time configuration, passed with `--dart-define-from-file`.
 ///
 /// Only the public Supabase URL and publishable key are ever compiled into
@@ -50,11 +52,24 @@ class AppConfig {
     }
     if (supabasePublishableKey.isEmpty) {
       problems.add('SUPABASE_PUBLISHABLE_KEY is not set.');
-    } else if (supabasePublishableKey.startsWith('sb_secret_')) {
+    } else if (supabasePublishableKey.startsWith('sb_secret_') || _isLegacyServiceRoleKey(supabasePublishableKey)) {
       problems.add('A secret key was configured. Use the publishable key instead.');
     }
     return problems;
   }
 
   bool get isValid => problems.isEmpty;
+
+  /// Legacy JWT keys carry their role in the payload. A `service_role` key
+  /// bypasses Row Level Security and must never ship in a client.
+  static bool _isLegacyServiceRoleKey(String key) {
+    final parts = key.split('.');
+    if (parts.length != 3) return false;
+    try {
+      final payload = jsonDecode(utf8.decode(base64Url.decode(base64Url.normalize(parts[1]))));
+      return payload is Map && payload['role'] == 'service_role';
+    } on FormatException {
+      return false;
+    }
+  }
 }

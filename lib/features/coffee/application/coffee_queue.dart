@@ -5,6 +5,7 @@ import 'package:coffee_tracker/app/repository_providers.dart';
 import 'package:coffee_tracker/core/data/rpc.dart';
 import 'package:coffee_tracker/core/errors/app_failure.dart';
 import 'package:coffee_tracker/features/accounting/domain/ledger_models.dart';
+import 'package:coffee_tracker/features/auth/application/auth_providers.dart';
 import 'package:coffee_tracker/features/coffee/data/coffee_queue_store.dart';
 import 'package:coffee_tracker/features/coffee/domain/pending_coffee.dart';
 import 'package:coffee_tracker/features/groups/application/group_providers.dart';
@@ -44,12 +45,23 @@ class CoffeeRejected extends CoffeeOutcome {
 }
 
 class CoffeeQueueState {
-  const CoffeeQueueState({this.items = const [], this.syncing = false});
+  const CoffeeQueueState({this.items = const [], this.userId, this.syncing = false});
 
+  /// Every coffee stored on this device, including other members' coffees
+  /// that wait for their owner to sign in again.
   final List<PendingCoffee> items;
+
+  /// The signed-in member. Only their coffees are shown and sent.
+  final String? userId;
   final bool syncing;
 
-  Iterable<PendingCoffee> forGroup(String groupId) => items.where((item) => item.groupId == groupId);
+  Iterable<PendingCoffee> get mine => items.where((item) => item.userId == userId);
+
+  /// Coffees of the signed-in member, in every group, not sent yet.
+  int get myWaitingCoffees =>
+      mine.where((item) => item.state == PendingCoffeeState.waiting).fold(0, (sum, item) => sum + item.quantity);
+
+  Iterable<PendingCoffee> forGroup(String groupId) => mine.where((item) => item.groupId == groupId);
 
   int waitingCoffees(String groupId) =>
       forGroup(groupId)
@@ -58,6 +70,9 @@ class CoffeeQueueState {
 
   List<PendingCoffee> failed(String groupId) =>
       forGroup(groupId).where((item) => item.state == PendingCoffeeState.failed).toList();
+
+  CoffeeQueueState copyWith({List<PendingCoffee>? items, bool? syncing}) =>
+      CoffeeQueueState(items: items ?? this.items, userId: userId, syncing: syncing ?? this.syncing);
 }
 
 final coffeeQueueProvider = NotifierProvider<CoffeeQueue, CoffeeQueueState>(CoffeeQueue.new);
@@ -77,6 +92,8 @@ class CoffeeQueue extends Notifier<CoffeeQueueState> {
 
   @override
   CoffeeQueueState build() {
+    // Rebuilt when another member signs in on this device.
+    final userId = ref.watch(currentUserIdProvider);
     final subscription = ref.watch(networkAvailableProvider).listen((online) {
       if (online) unawaited(syncAll());
     });
@@ -84,18 +101,26 @@ class CoffeeQueue extends Notifier<CoffeeQueueState> {
       unawaited(subscription.cancel());
       _retryTimer?.cancel();
     });
-    final items = _store.load();
-    if (items.any((item) => item.state == PendingCoffeeState.waiting)) _scheduleRetry(0);
-    return CoffeeQueueState(items: items);
+    final queue = CoffeeQueueState(items: _store.load(), userId: userId);
+    if (queue.myWaitingCoffees > 0) _scheduleRetry(0);
+    return queue;
   }
 
   /// Records [quantity] coffees for the signed-in member. Returns once the
   /// server answered or the coffee was safely queued on the device.
   Future<CoffeeOutcome> record(String groupId, {int quantity = 1}) async {
-    if (state.items.length >= maxQueueLength) {
+    final userId = state.userId;
+    if (userId == null) return const CoffeeRejected(SessionExpiredFailure());
+    if (state.mine.length >= maxQueueLength) {
       return const CoffeeRejected(RuleFailure('queue_full'));
     }
-    final item = PendingCoffee(key: newIdempotencyKey(), groupId: groupId, quantity: quantity, occurredAt: _now());
+    final item = PendingCoffee(
+      key: newIdempotencyKey(),
+      userId: userId,
+      groupId: groupId,
+      quantity: quantity,
+      occurredAt: _now(),
+    );
     await _replace([...state.items, item]);
     return _send(item);
   }
@@ -103,28 +128,31 @@ class CoffeeQueue extends Notifier<CoffeeQueueState> {
   /// Removes a coffee that has not reached the server yet ("undo" while
   /// offline). Returns false when it was already sent.
   Future<bool> removeQueued(String key) async {
-    final exists = state.items.any((item) => item.key == key);
+    final exists = state.mine.any((item) => item.key == key);
     if (!exists) return false;
     await _replace(state.items.where((item) => item.key != key).toList());
     return true;
   }
 
   Future<void> retry(String key) async {
-    final item = state.items.where((i) => i.key == key).firstOrNull;
+    final item = state.mine.where((i) => i.key == key).firstOrNull;
     if (item == null) return;
     final reset = item.copyWith(state: PendingCoffeeState.waiting, errorCode: () => null);
     await _update(reset);
     await _send(reset);
   }
 
-  /// Sends every waiting coffee, oldest first. Safe to call often.
+  /// Forgets the signed-in member's unsent coffees (after their account was deleted).
+  Future<void> discardMine() => _replace(state.items.where((item) => item.userId != state.userId).toList());
+
+  /// Sends the signed-in member's waiting coffees, oldest first. Safe to call often.
   Future<void> syncAll() => _activeSync ??= _syncAll().whenComplete(() => _activeSync = null);
 
   Future<void> _syncAll() async {
-    final waiting = state.items.where((item) => item.state == PendingCoffeeState.waiting).toList()
+    final waiting = state.mine.where((item) => item.state == PendingCoffeeState.waiting).toList()
       ..sort((a, b) => a.occurredAt.compareTo(b.occurredAt));
     if (waiting.isEmpty) return;
-    state = CoffeeQueueState(items: state.items, syncing: true);
+    state = state.copyWith(syncing: true);
     try {
       for (final item in waiting) {
         final outcome = await _send(item, bumpRevision: false);
@@ -132,13 +160,15 @@ class CoffeeQueue extends Notifier<CoffeeQueueState> {
       }
     } finally {
       if (ref.mounted) {
-        state = CoffeeQueueState(items: state.items);
+        state = state.copyWith(syncing: false);
         ref.read(dataRevisionProvider.notifier).bump();
       }
     }
   }
 
   Future<CoffeeOutcome> _send(PendingCoffee item, {bool bumpRevision = true}) async {
+    // The request runs with the current session, so the coffee must belong to it.
+    if (item.userId != state.userId) return CoffeeQueued(item.key);
     if (item.isExpired(_now())) {
       await _update(item.copyWith(state: PendingCoffeeState.failed, errorCode: () => 'occurred_at_out_of_range'));
       return const CoffeeRejected(RuleFailure('occurred_at_out_of_range'));
@@ -182,7 +212,7 @@ class CoffeeQueue extends Notifier<CoffeeQueueState> {
       _replace([for (final item in state.items) item.key == updated.key ? updated : item]);
 
   Future<void> _replace(List<PendingCoffee> items) async {
-    state = CoffeeQueueState(items: items, syncing: state.syncing);
+    state = state.copyWith(items: items);
     await _store.save(items);
   }
 }

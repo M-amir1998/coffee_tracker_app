@@ -5,7 +5,6 @@ import 'package:coffee_tracker/core/l10n/l10n.dart';
 import 'package:coffee_tracker/core/theme/app_theme.dart';
 import 'package:coffee_tracker/features/accounting/application/report_providers.dart';
 import 'package:coffee_tracker/features/accounting/domain/ledger_models.dart';
-import 'package:coffee_tracker/features/auth/application/auth_providers.dart';
 import 'package:coffee_tracker/features/dashboard/presentation/home_page.dart';
 import 'package:coffee_tracker/features/groups/application/group_providers.dart';
 import 'package:coffee_tracker/features/groups/domain/group_models.dart';
@@ -37,7 +36,6 @@ void main() {
       clock: TestClock(DateTime.utc(2026, 10, 22, 9)),
       network: network,
     ),
-    currentUserIdProvider.overrideWithValue('alice'),
     myGroupsProvider.overrideWith(
       (ref) async => [
         GroupSummary(

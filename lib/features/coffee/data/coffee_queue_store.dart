@@ -18,7 +18,11 @@ class CoffeeQueueStore {
     final raw = _preferences.getString(storageKey);
     if (raw == null || raw.isEmpty) return const [];
     try {
-      return asJsonList(jsonDecode(raw)).map(PendingCoffee.fromJson).toList();
+      // Entries without an owner cannot be attributed to anyone, so they are never sent.
+      return asJsonList(jsonDecode(raw))
+          .where((json) => json['user_id'] is String)
+          .map(PendingCoffee.fromJson)
+          .toList();
     } on FormatException {
       return const [];
     }

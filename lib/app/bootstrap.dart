@@ -7,12 +7,17 @@ import 'package:coffee_tracker/core/errors/app_failure.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// Initialises platform services and starts the app.
 Future<void> bootstrap() async {
+  // Clean web URLs (/join/CODE instead of /#/join/CODE), so invitation and
+  // email links open the right page. The host must serve index.html for
+  // unknown paths. No effect on other platforms.
+  usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
   _registerFontLicenses();
 

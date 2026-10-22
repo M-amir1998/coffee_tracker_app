@@ -10,7 +10,9 @@ import pathlib
 import re
 import sys
 
-USE = re.compile(r'\bl10n\.([a-zA-Z][a-zA-Z0-9]*)')
+# Not preceded by '/' or a word character, so import paths such as
+# .../l10n/l10n.dart do not count as keys.
+USE = re.compile(r'(?<![/\w])l10n\.([a-zA-Z][a-zA-Z0-9]*)')
 BACKSLASH = chr(92)
 
 

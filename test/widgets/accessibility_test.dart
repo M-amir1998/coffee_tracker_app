@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:coffee_tracker/core/widgets/states.dart';
 import 'package:coffee_tracker/features/accounting/application/report_providers.dart';
 import 'package:coffee_tracker/features/accounting/domain/ledger_models.dart';
-import 'package:coffee_tracker/features/auth/application/auth_providers.dart';
 import 'package:coffee_tracker/features/auth/presentation/sign_in_page.dart';
 import 'package:coffee_tracker/features/dashboard/presentation/home_page.dart';
 import 'package:coffee_tracker/features/group_overview/presentation/balances_table.dart';
@@ -38,7 +37,6 @@ void main() {
       clock: TestClock(DateTime.utc(2026, 10, 22, 9)),
       network: network,
     ),
-    currentUserIdProvider.overrideWithValue('alice'),
     currentGroupIdProvider.overrideWithValue('g1'),
     unreadNotificationsProvider.overrideWithValue(0),
     dashboardProvider.overrideWith((ref, groupId) async => sampleDashboard()),

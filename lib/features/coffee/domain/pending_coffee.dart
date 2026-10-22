@@ -12,6 +12,7 @@ enum PendingCoffeeState {
 class PendingCoffee {
   const PendingCoffee({
     required this.key,
+    required this.userId,
     required this.groupId,
     required this.quantity,
     required this.occurredAt,
@@ -22,6 +23,7 @@ class PendingCoffee {
 
   factory PendingCoffee.fromJson(Json json) => PendingCoffee(
     key: json.str('key'),
+    userId: json.str('user_id'),
     groupId: json.str('group_id'),
     quantity: json.integer('quantity'),
     occurredAt: json.date('occurred_at'),
@@ -33,6 +35,10 @@ class PendingCoffee {
   /// Idempotency key generated on the device; retries reuse it, so the server
   /// records the coffee at most once.
   final String key;
+
+  /// The member who drank it. Only their session may send it, so a coffee
+  /// queued on a shared device is never charged to the next person who signs in.
+  final String userId;
   final String groupId;
   final int quantity;
 
@@ -49,6 +55,7 @@ class PendingCoffee {
 
   PendingCoffee copyWith({PendingCoffeeState? state, int? attempts, String? Function()? errorCode}) => PendingCoffee(
     key: key,
+    userId: userId,
     groupId: groupId,
     quantity: quantity,
     occurredAt: occurredAt,
@@ -59,6 +66,7 @@ class PendingCoffee {
 
   Json toJson() => {
     'key': key,
+    'user_id': userId,
     'group_id': groupId,
     'quantity': quantity,
     'occurred_at': occurredAt.toUtc().toIso8601String(),

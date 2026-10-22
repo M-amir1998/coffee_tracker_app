@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:coffee_tracker/core/errors/app_failure.dart';
+import 'package:coffee_tracker/features/auth/application/auth_providers.dart';
 import 'package:coffee_tracker/features/coffee/application/coffee_queue.dart';
 import 'package:coffee_tracker/features/coffee/data/coffee_queue_store.dart';
 import 'package:coffee_tracker/features/coffee/domain/pending_coffee.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:flutter_test/flutter_test.dart';
 
 import '../helpers/fakes.dart';
@@ -22,10 +25,16 @@ void main() {
 
   tearDown(() => network.close());
 
-  Future<ProviderContainer> container({Map<String, Object> stored = const {}}) async {
+  Future<ProviderContainer> container({Map<String, Object> stored = const {}, Override? currentUser}) async {
     final preferences = await inMemoryPreferences(stored);
     final c = ProviderContainer.test(
-      overrides: queueOverrides(preferences: preferences, ledger: ledger, clock: clock, network: network),
+      overrides: queueOverrides(
+        preferences: preferences,
+        ledger: ledger,
+        clock: clock,
+        network: network,
+        currentUser: currentUser,
+      ),
     );
     return c;
   }
@@ -121,9 +130,44 @@ void main() {
     expect(c.read(coffeeQueueProvider).items, isEmpty);
   });
 
+  test('coffees are only shown and sent for the member who recorded them', () async {
+    final c = await container(currentUser: currentUserIdProvider.overrideWith((ref) => ref.watch(_signedIn)));
+    ledger.failWith = const NetworkFailure();
+    await c.read(coffeeQueueProvider.notifier).record('g1');
+    expect(c.read(coffeeQueueProvider).waitingCoffees('g1'), 1);
+
+    // Alice signs out while offline and Bob signs in on the same device.
+    c.read(_signedIn.notifier).set('bob');
+    ledger.failWith = null;
+    ledger.calls.clear();
+    await c.read(coffeeQueueProvider.notifier).syncAll();
+    expect(ledger.calls, isEmpty, reason: "Bob's session must never send Alice's coffee");
+    expect(c.read(coffeeQueueProvider).waitingCoffees('g1'), 0);
+    expect(c.read(coffeeQueueProvider).items, hasLength(1), reason: 'it is kept for Alice');
+    await c.read(coffeeQueueProvider.notifier).record('g1');
+    expect(ledger.calls.single.key, isNot(c.read(coffeeQueueProvider).items.single.key));
+
+    // Back to Alice: her coffee is sent with her session.
+    c.read(_signedIn.notifier).set('alice');
+    await c.read(coffeeQueueProvider.notifier).syncAll();
+    expect(ledger.calls, hasLength(2));
+    expect(c.read(coffeeQueueProvider).items, isEmpty);
+  });
+
+  test('stored coffees without an owner are never sent', () async {
+    final legacy = jsonEncode([
+      {'key': 'k', 'group_id': 'g1', 'quantity': 1, 'occurred_at': '2026-10-22T08:00:00.000Z', 'state': 'waiting'},
+    ]);
+    final c = await container(stored: {CoffeeQueueStore.storageKey: legacy});
+    await c.read(coffeeQueueProvider.notifier).syncAll();
+    expect(ledger.calls, isEmpty);
+    expect(c.read(coffeeQueueProvider).items, isEmpty);
+  });
+
   test('pending coffees serialise faithfully', () {
     final item = PendingCoffee(
       key: 'k',
+      userId: 'u',
       groupId: 'g',
       quantity: 3,
       occurredAt: DateTime.utc(2026, 1, 2, 3, 4),
@@ -133,12 +177,20 @@ void main() {
     );
     final copy = PendingCoffee.fromJson(item.toJson());
     expect(
-      (copy.key, copy.groupId, copy.quantity, copy.occurredAt, copy.state, copy.attempts, copy.errorCode),
-      (item.key, item.groupId, item.quantity, item.occurredAt, item.state, item.attempts, item.errorCode),
+      (copy.key, copy.userId, copy.groupId, copy.quantity, copy.occurredAt, copy.state, copy.attempts, copy.errorCode),
+      (item.key, item.userId, item.groupId, item.quantity, item.occurredAt, item.state, item.attempts, item.errorCode),
     );
   });
 }
 
-String _encode(List<PendingCoffee> items) =>
-    '[${items.map((i) => '{"key":"${i.key}","group_id":"${i.groupId}","quantity":${i.quantity},'
-        '"occurred_at":"${i.occurredAt.toUtc().toIso8601String()}","state":"${i.state.name}","attempts":${i.attempts}}').join(',')}]';
+String _encode(List<PendingCoffee> items) => jsonEncode([for (final item in items) item.toJson()]);
+
+/// The signed-in member, switchable within a test.
+final _signedIn = NotifierProvider<_SignedIn, String?>(_SignedIn.new);
+
+class _SignedIn extends Notifier<String?> {
+  @override
+  String? build() => 'alice';
+
+  void set(String? userId) => state = userId;
+}

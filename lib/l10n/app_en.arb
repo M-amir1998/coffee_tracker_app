@@ -143,6 +143,16 @@
   "savePassword": "Save new password",
   "passwordUpdated": "Your password has been updated.",
   "signOut": "Sign out",
+  "signOutPendingTitle": "Coffees not sent yet",
+  "signOutPendingMessage": "{count, plural, =1{1 coffee recorded on this device has not reached the server yet. It stays saved here and is sent the next time you sign in on this device.} other{{count} coffees recorded on this device have not reached the server yet. They stay saved here and are sent the next time you sign in on this device.}}",
+  "@signOutPendingMessage": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "signOutAnyway": "Sign out anyway",
   "welcomeTitle": "Welcome, {name}!",
   "@welcomeTitle": {
     "placeholders": {

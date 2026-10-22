@@ -9,6 +9,7 @@ import 'package:coffee_tracker/core/widgets/feedback.dart';
 import 'package:coffee_tracker/core/widgets/member_avatar.dart';
 import 'package:coffee_tracker/core/widgets/page_layout.dart';
 import 'package:coffee_tracker/features/auth/presentation/auth_layout.dart';
+import 'package:coffee_tracker/features/coffee/application/coffee_queue.dart';
 import 'package:coffee_tracker/features/groups/application/group_providers.dart';
 import 'package:coffee_tracker/features/groups/presentation/group_switcher.dart';
 import 'package:coffee_tracker/features/profile/application/profile_providers.dart';
@@ -349,6 +350,29 @@ class _AccountCard extends ConsumerWidget {
     if (!confirmed) return;
     try {
       await ref.read(profileRepositoryProvider).deleteAccount();
+      await ref.read(coffeeQueueProvider.notifier).discardMine();
+      await ref.read(authRepositoryProvider).signOut();
+    } on Object catch (error) {
+      if (context.mounted) showErrorToast(context, error);
+    }
+  }
+
+  Future<void> _signOut(BuildContext context, WidgetRef ref) async {
+    final l10n = context.l10n;
+    final queue = ref.read(coffeeQueueProvider.notifier);
+    if (ref.read(coffeeQueueProvider).myWaitingCoffees > 0) await queue.syncAll();
+    final waiting = ref.read(coffeeQueueProvider).myWaitingCoffees;
+    if (waiting > 0) {
+      if (!context.mounted) return;
+      final confirmed = await confirmAction(
+        context,
+        title: l10n.signOutPendingTitle,
+        message: l10n.signOutPendingMessage(waiting),
+        confirmLabel: l10n.signOutAnyway,
+      );
+      if (!confirmed) return;
+    }
+    try {
       await ref.read(authRepositoryProvider).signOut();
     } on Object catch (error) {
       if (context.mounted) showErrorToast(context, error);
@@ -387,7 +411,7 @@ class _AccountCard extends ConsumerWidget {
             contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.logout_rounded),
             title: Text(l10n.signOut),
-            onTap: () => unawaited(ref.read(authRepositoryProvider).signOut()),
+            onTap: () => unawaited(_signOut(context, ref)),
           ),
           const Divider(height: Spacing.lg),
           ListTile(

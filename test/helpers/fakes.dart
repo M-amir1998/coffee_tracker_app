@@ -5,6 +5,7 @@ import 'package:coffee_tracker/app/repository_providers.dart';
 import 'package:coffee_tracker/core/errors/app_failure.dart';
 import 'package:coffee_tracker/features/accounting/data/ledger_repository.dart';
 import 'package:coffee_tracker/features/accounting/domain/ledger_models.dart';
+import 'package:coffee_tracker/features/auth/application/auth_providers.dart';
 import 'package:coffee_tracker/features/coffee/application/coffee_queue.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -75,9 +76,11 @@ List<Override> queueOverrides({
   required FakeLedgerRepository ledger,
   required TestClock clock,
   required StreamController<bool> network,
+  Override? currentUser,
 }) => [
   sharedPreferencesProvider.overrideWithValue(preferences),
   ledgerRepositoryProvider.overrideWithValue(ledger),
   clockProvider.overrideWithValue(clock.call),
   networkAvailableProvider.overrideWithValue(network.stream),
+  currentUser ?? currentUserIdProvider.overrideWithValue('alice'),
 ];
