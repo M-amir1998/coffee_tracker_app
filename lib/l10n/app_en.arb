@@ -1,0 +1,1970 @@
+{
+  "@@locale": "en",
+  "appTitle": "Coffee Tracker",
+  "navHome": "Home",
+  "navGroup": "Group",
+  "navActivity": "Activity",
+  "navHeroes": "Coffee Heroes",
+  "navAnalytics": "Analytics",
+  "navSettleUp": "Settle up",
+  "navCycles": "Cycles & reports",
+  "navAdmin": "Administration",
+  "navNotifications": "Notifications",
+  "navSettings": "Settings",
+  "navMore": "More",
+  "navSectionAdministration": "Administration",
+  "moreAnalyticsHint": "Trends, rhythms and money over time",
+  "moreSettleHint": "Suggestions to settle all balances",
+  "moreCyclesHint": "Closed periods and financial reports",
+  "moreAdminHint": "Approvals, members, cash box and exports",
+  "moreNotificationsHint": "Requests and updates for you",
+  "moreSettingsHint": "Profile, appearance and privacy",
+  "loading": "Loading…",
+  "someone": "Someone",
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "seeAll": "See all",
+  "loadMore": "Load more",
+  "actionCancel": "Cancel",
+  "actionClose": "Close",
+  "actionSave": "Save",
+  "actionRetry": "Retry",
+  "actionUndo": "Undo",
+  "actionDiscard": "Discard",
+  "setupTitle": "Configuration needed",
+  "setupMessage": "This build of Coffee Tracker is missing its server configuration. Ask whoever deployed it to rebuild with a configuration file.",
+  "errorTitle": "Something went wrong",
+  "errorNetwork": "No connection to the server. Check your internet connection and try again.",
+  "errorSessionExpired": "Your session has expired. Please sign in again.",
+  "errorPermission": "You are not allowed to do this.",
+  "errorUnexpected": "An unexpected error occurred. Please try again.",
+  "authErrorInvalidCredentials": "The email or password is not correct.",
+  "authErrorEmailNotConfirmed": "Please confirm your email address first.",
+  "authErrorUserExists": "An account with this email already exists. Try signing in.",
+  "authErrorWeakPassword": "This password is too weak. Use at least 8 characters with letters and digits.",
+  "authErrorCodeInvalid": "This code is invalid or has expired. Request a new one.",
+  "authErrorRateLimited": "Too many attempts. Please wait a moment and try again.",
+  "authErrorSamePassword": "The new password must be different from the old one.",
+  "authErrorSignupDisabled": "New registrations are currently disabled.",
+  "ruleNotMember": "You are not an active member of this group.",
+  "ruleNotFound": "This item no longer exists.",
+  "ruleInvalidAmount": "Enter a positive amount.",
+  "ruleAmountTooLarge": "This amount is unusually large. Split it or ask an administrator.",
+  "ruleInvalidQuantity": "You can record between 1 and 20 coffees at once.",
+  "ruleInsufficientCash": "The cash box does not hold enough confirmed money for this.",
+  "ruleReimbursementExceedsCredit": "A reimbursement cannot be more than the group owes this person.",
+  "ruleSelfTransfer": "Nobody can pay themselves.",
+  "ruleNoteRequired": "Please add a short explanation.",
+  "ruleDescriptionRequired": "Please describe what was bought.",
+  "ruleInvalidState": "This item has already been handled.",
+  "ruleAlreadyReversed": "This transaction has already been reversed.",
+  "ruleCannotReverseReversal": "A reversal cannot be reversed. Record the original again instead.",
+  "ruleAlreadyDisputed": "This transaction was already disputed and resolved.",
+  "ruleUndoWindowExpired": "This coffee can no longer be undone. Ask an administrator to correct it.",
+  "ruleCycleClosed": "This belongs to a closed accounting cycle.",
+  "ruleNoOpenCycle": "This group has no open accounting cycle.",
+  "ruleStaleCycle": "The accounting cycle has changed. Refresh and try again.",
+  "ruleConfirmationMismatch": "The confirmation text does not match.",
+  "ruleOccurredAtOutOfRange": "The date is outside the allowed range. Offline coffees must be synced within 7 days.",
+  "ruleIdempotencyConflict": "This request was already used for a different operation. Please try again.",
+  "ruleOutstandingBalance": "Settle your balance first.",
+  "ruleOpenItems": "Resolve your pending transactions first.",
+  "ruleLastAdmin": "Appoint another administrator first.",
+  "ruleInvalidInvitation": "This invitation code is not valid.",
+  "ruleInvitationRevoked": "This invitation has been revoked.",
+  "ruleInvitationExpired": "This invitation has expired.",
+  "ruleInvitationUsedUp": "This invitation has been used too many times.",
+  "ruleInvalidName": "Enter a valid name.",
+  "ruleInvalidPrice": "Enter a price between 0.01 and 100.00.",
+  "rulePriceBackdated": "Price changes cannot apply to the past.",
+  "ruleInvalidTimezone": "Choose a valid time zone.",
+  "ruleQueueFull": "Too many coffees are waiting to sync. Connect to the internet first.",
+  "validationEmailRequired": "Enter your email address.",
+  "validationEmailInvalid": "Enter a valid email address.",
+  "validationPasswordRequired": "Enter your password.",
+  "validationPasswordLength": "Use at least 8 characters.",
+  "validationPasswordMix": "Use both letters and digits.",
+  "validationCode": "Enter the 6-digit code from the email.",
+  "validationNameRequired": "Enter a name.",
+  "validationTimezone": "Choose a time zone from the list.",
+  "validationInvitationCode": "Invitation codes have 8 characters.",
+  "validationAmountFormat": "Enter an amount like 4.50.",
+  "validationAmountPositive": "The amount must be greater than zero.",
+  "validationAmountMax": "The maximum is {amount}.",
+  "@validationAmountMax": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "validationDescriptionRequired": "Describe what was bought.",
+  "validationMemberRequired": "Choose a member.",
+  "validationNoteRequired": "Add a short explanation (at least 3 characters).",
+  "validationNextCycleName": "The next cycle needs a different name.",
+  "authBrandHeadline": "Coffee, shared fairly.",
+  "authBrandBody": "Record a coffee in one tap. Coffee Tracker keeps the group’s money exact, from the cash box to the last bean.",
+  "authBrandPoint1": "Exact balances for everyone, in real time",
+  "authBrandPoint2": "Every deposit, purchase and payment is traceable",
+  "authBrandPoint3": "Works on your phone, tablet and computer",
+  "signInTitle": "Welcome back",
+  "signInSubtitle": "Sign in to record your coffees.",
+  "fieldEmail": "Email",
+  "fieldPassword": "Password",
+  "fieldNewPassword": "New password",
+  "fieldCode": "Code",
+  "fieldDisplayName": "Display name",
+  "showPassword": "Show password",
+  "hidePassword": "Hide password",
+  "forgotPasswordLink": "Forgot password?",
+  "signInAction": "Sign in",
+  "noAccountYet": "New here?",
+  "createAccountLink": "Create an account",
+  "enterConfirmationCode": "Enter my confirmation code",
+  "signUpTitle": "Create your account",
+  "signUpSubtitle": "Join your group’s coffee fund in a minute.",
+  "displayNameHelper": "Shown to your group instead of your email address.",
+  "passwordPolicy": "At least 8 characters, including letters and digits.",
+  "signUpAction": "Create account",
+  "alreadyHaveAccount": "Already have an account?",
+  "signInLink": "Sign in",
+  "verifyTitle": "Confirm your email",
+  "verifySubtitle": "We sent you an email with a confirmation link and a 6-digit code. Open the link, or enter the code here.",
+  "verifyAction": "Confirm",
+  "resendCode": "Send a new email",
+  "confirmationResent": "A new confirmation email is on its way.",
+  "backToSignIn": "Back to sign in",
+  "forgotTitle": "Reset your password",
+  "forgotSubtitle": "We will email you a link and a code to choose a new password.",
+  "sendResetCode": "Send reset email",
+  "resetTitle": "Choose a new password",
+  "resetSubtitleCode": "Enter the 6-digit code from the email and your new password.",
+  "resetSubtitleLink": "Enter your new password.",
+  "savePassword": "Save new password",
+  "passwordUpdated": "Your password has been updated.",
+  "signOut": "Sign out",
+  "signOutPendingTitle": "Coffees not sent yet",
+  "signOutPendingMessage": "{count, plural, =1{1 coffee recorded on this device has not reached the server yet. It stays saved here and is sent the next time you sign in on this device.} other{{count} coffees recorded on this device have not reached the server yet. They stay saved here and are sent the next time you sign in on this device.}}",
+  "@signOutPendingMessage": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "signOutAnyway": "Sign out anyway",
+  "welcomeTitle": "Welcome, {name}!",
+  "@welcomeTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "welcomeTitleGeneric": "Welcome!",
+  "welcomeSubtitle": "Join your research group’s coffee fund, or set one up for everybody.",
+  "welcomeJoinTitle": "Join a group",
+  "welcomeJoinBody": "Got an invitation code or link from your group? Use it here.",
+  "welcomeJoinAction": "Enter invitation code",
+  "welcomeCreateTitle": "Create a group",
+  "welcomeCreateBody": "Start a new coffee fund. You become its administrator.",
+  "welcomeCreateAction": "Create a group",
+  "createGroupTitle": "Create a group",
+  "createGroupIntro": "Set up the coffee fund. You can change these settings later.",
+  "fieldGroupName": "Group name",
+  "groupNameHint": "e.g. Robotics Lab",
+  "fieldCoffeePrice": "Price per coffee",
+  "coffeePriceHelper": "Charged for every coffee. Changes never affect past coffees.",
+  "fieldTimezone": "Time zone",
+  "timezoneHelper": "Used for daily statistics and early-bird achievements.",
+  "fieldFirstCycleName": "First accounting cycle",
+  "firstCycleHelper": "A period you close later, e.g. a month or a semester.",
+  "createGroupAction": "Create group",
+  "joinGroupTitle": "Join a group",
+  "joinGroupIntro": "Enter the 8-character code from your invitation.",
+  "fieldInvitationCode": "Invitation code",
+  "checkCode": "Check code",
+  "joinGroupAction": "Join {name}",
+  "@joinGroupAction": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "openGroup": "Open group",
+  "alreadyMember": "You are already a member.",
+  "membersCount": "{count, plural, =1{1 member} other{{count} members}}",
+  "@membersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "joinAnotherGroup": "Join another group",
+  "createAnotherGroup": "Create a new group",
+  "statusOwes": "Owes",
+  "statusOwed": "Owed",
+  "statusSettled": "Settled",
+  "txStatusPending": "Pending",
+  "txStatusPosted": "Confirmed",
+  "txStatusRejected": "Rejected",
+  "txStatusCancelled": "Cancelled",
+  "txStatusDisputed": "Disputed",
+  "txStatusReversed": "Reversed",
+  "roleMember": "Member",
+  "roleTreasurer": "Treasurer",
+  "roleAdmin": "Administrator",
+  "greetingMorning": "Good morning, {name}",
+  "@greetingMorning": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "greetingAfternoon": "Good afternoon, {name}",
+  "@greetingAfternoon": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "greetingEvening": "Good evening, {name}",
+  "@greetingEvening": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "greetingNight": "Hello, {name}",
+  "@greetingNight": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "balanceYouOwe": "You owe",
+  "balanceGroupOwesYou": "The group owes you",
+  "balanceSettled": "You’re all settled",
+  "balanceYouOweShort": "you owe {amount}",
+  "@balanceYouOweShort": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "balanceOwedToYouShort": "the group owes you {amount}",
+  "@balanceOwedToYouShort": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "balanceSettledShort": "you’re settled",
+  "balanceInconsistent": "These figures do not add up. Please refresh; if this persists, tell an administrator.",
+  "pricePerCoffee": "{price} per coffee",
+  "@pricePerCoffee": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "figureCoffees": "Coffees",
+  "figureConsumption": "Consumed",
+  "figureContributed": "Contributed",
+  "figureSettlements": "Payments",
+  "figureReimbursed": "Reimbursed",
+  "carriedOverDebt": "Includes {amount} carried over from the previous cycle.",
+  "@carriedOverDebt": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "carriedOverCredit": "Includes a credit of {amount} carried over from the previous cycle.",
+  "@carriedOverCredit": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nextPriceNotice": "The price changes to {price} on {date}.",
+  "@nextPriceNotice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "addCoffee": "+1 Coffee",
+  "coffeeAdded": "Enjoy!",
+  "addCoffeeSemantic": "Add one coffee for {price}",
+  "@addCoffeeSemantic": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "todayCoffees": "{count, plural, =0{No coffee yet today} =1{1 coffee today} other{{count} coffees today}} · {price} each",
+  "@todayCoffees": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "addSeveral": "Several",
+  "addSeveralTitle": "Add several coffees",
+  "addSeveralHint": "For example when you forgot to record earlier today.",
+  "decrease": "Fewer",
+  "increase": "More",
+  "recordCoffees": "{count, plural, =1{Record 1 coffee} other{Record {count} coffees}}",
+  "@recordCoffees": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coffeeRecorded": "{count, plural, =1{Coffee recorded.} other{{count} coffees recorded.}}",
+  "@coffeeRecorded": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coffeeRecordedWithBalance": "{count, plural, =1{Coffee recorded} other{{count} coffees recorded}} — {balance}.",
+  "@coffeeRecordedWithBalance": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "balance": {
+        "type": "String"
+      }
+    }
+  },
+  "coffeeQueuedOffline": "{count, plural, =1{Saved offline. Your coffee syncs automatically.} other{Saved offline. Your {count} coffees sync automatically.}}",
+  "@coffeeQueuedOffline": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coffeeUndone": "Coffee removed.",
+  "coffeesWaitingToSync": "{count, plural, =1{1 coffee waiting to sync} other{{count} coffees waiting to sync}}",
+  "@coffeesWaitingToSync": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coffeeSyncFailed": "{count, plural, =1{A coffee from {time} could not be recorded.} other{{count} coffees from {time} could not be recorded.}}",
+  "@coffeeSyncFailed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "syncNow": "Sync now",
+  "quickActionsTitle": "Money",
+  "actionDeposit": "Paid into the box",
+  "actionBoughtBeans": "Bought beans",
+  "actionPaidSomeone": "Paid someone",
+  "actionReimburse": "Reimburse from box",
+  "actionRequestReimbursement": "Request reimbursement",
+  "actionSettleUp": "Settle up",
+  "attentionTitle": "Needs your attention",
+  "attentionToReview": "{count, plural, =1{1 item waits for your decision} other{{count} items wait for your decision}}",
+  "@attentionToReview": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "attentionMine": "{count, plural, =1{1 of your submissions is pending} other{{count} of your submissions are pending}}",
+  "@attentionMine": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "recentActivityTitle": "Your recent activity",
+  "recentEmptyTitle": "Nothing yet",
+  "recentEmptyMessage": "Your coffees and payments will appear here.",
+  "quote1": "Life happens, coffee helps.",
+  "quote2": "First coffee, then science.",
+  "quote3": "A yawn is a silent scream for coffee.",
+  "quote4": "Behind every great paper is a lot of coffee.",
+  "quote5": "Espresso yourself.",
+  "quote6": "Coffee: the most important research instrument in the lab.",
+  "quote7": "Decaf? Not on deadline day.",
+  "activityCoffee": "{name} had {count, plural, =1{a coffee} other{{count} coffees}}",
+  "@activityCoffee": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "activityCoffeeForMember": "{actor} recorded {count, plural, =1{a coffee} other{{count} coffees}} for {name}",
+  "@activityCoffeeForMember": {
+    "placeholders": {
+      "actor": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "activityDeposit": "{name} deposited {amount} into the cash box",
+  "@activityDeposit": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "activityPurchasePersonal": "{name} bought coffee beans for {amount}",
+  "@activityPurchasePersonal": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "activityPurchaseBox": "{name} bought coffee beans for {amount} with money from the cash box",
+  "@activityPurchaseBox": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "activityTransfer": "{from} paid {to} {amount}",
+  "@activityTransfer": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "activityReimbursement": "{actor} reimbursed {name} {amount} from the cash box",
+  "@activityReimbursement": {
+    "placeholders": {
+      "actor": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "activityReimbursementRequest": "{name} asked to be reimbursed {amount} from the cash box",
+  "@activityReimbursementRequest": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "activityCashAdjustmentUp": "{actor} corrected the cash box by +{amount}",
+  "@activityCashAdjustmentUp": {
+    "placeholders": {
+      "actor": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "activityCashAdjustmentDown": "{actor} corrected the cash box by −{amount}",
+  "@activityCashAdjustmentDown": {
+    "placeholders": {
+      "actor": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "activityBalanceCharge": "{actor} charged {name} {amount} (correction)",
+  "@activityBalanceCharge": {
+    "placeholders": {
+      "actor": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "activityBalanceCredit": "{actor} credited {name} {amount} (correction)",
+  "@activityBalanceCredit": {
+    "placeholders": {
+      "actor": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "activityReversal": "{actor} reversed a {kind}",
+  "@activityReversal": {
+    "placeholders": {
+      "actor": {
+        "type": "String"
+      },
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "activityCycleOpened": "Accounting cycle “{name}” started",
+  "@activityCycleOpened": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "activityCycleClosed": "Accounting cycle “{name}” was closed",
+  "@activityCycleClosed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "activityUnknown": "Transaction",
+  "kindCoffee": "coffee",
+  "kindDeposit": "deposit",
+  "kindPurchasePersonal": "bean purchase (own money)",
+  "kindPurchaseBox": "bean purchase (cash box)",
+  "kindTransfer": "payment",
+  "kindReimbursement": "reimbursement",
+  "kindCashAdjustment": "cash correction",
+  "kindBalanceAdjustment": "balance correction",
+  "kindReversal": "reversal",
+  "kindTransaction": "transaction",
+  "filterCoffees": "Coffees",
+  "filterDeposits": "Deposits",
+  "filterPurchases": "Purchases",
+  "filterTransfers": "Payments",
+  "filterReimbursements": "Reimbursements",
+  "filterAdjustments": "Corrections",
+  "filterReversals": "Reversals",
+  "filterCycles": "Cycles",
+  "filterEveryone": "Everyone",
+  "filterAllCycles": "All cycles",
+  "filterAnyDate": "Any date",
+  "filterOpenOnly": "Pending only",
+  "filterAll": "All",
+  "clearFilters": "Clear filters",
+  "fieldMember": "Member",
+  "fieldCycle": "Cycle",
+  "activityEmptyTitle": "No activity",
+  "activityEmptyMessage": "Coffees and payments of your group will appear here.",
+  "activityEmptyFiltered": "Nothing matches these filters.",
+  "transactionTitle": "Transaction",
+  "factType": "Type",
+  "factCoffees": "Coffees",
+  "factFrom": "Paid by",
+  "factTo": "Paid to",
+  "factMember": "Member",
+  "factBuyer": "Bought by",
+  "factReimbursedMember": "Reimbursed to",
+  "factRecordedBy": "Recorded by",
+  "factDate": "Date",
+  "factDrunkAt": "Drunk at",
+  "factRecordedAt": "Recorded at",
+  "factCycle": "Cycle",
+  "factFunding": "Paid with",
+  "factReverses": "Reverses",
+  "factDescription": "Description",
+  "coffeesAtPrice": "{count, plural, =1{1 coffee at {price}} other{{count} coffees at {price}}}",
+  "@coffeesAtPrice": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "pendingNotCounted": "Not counted in any balance until it is confirmed.",
+  "reversedNotice": "Reversed by an administrator: {note}",
+  "@reversedNotice": {
+    "placeholders": {
+      "note": {
+        "type": "String"
+      }
+    }
+  },
+  "actionsTitle": "Actions",
+  "approve": "Approve",
+  "confirmReceived": "I received it",
+  "reject": "Reject",
+  "rejectTitle": "Reject this transaction?",
+  "rejectReason": "Reason (shown to the submitter)",
+  "cancelSubmission": "Cancel submission",
+  "dispute": "Dispute",
+  "disputeTitle": "Dispute the rejection",
+  "disputeReason": "Why should this be accepted?",
+  "resolveApprove": "Accept dispute",
+  "resolveReject": "Uphold rejection",
+  "resolveApproveTitle": "Accept the dispute and post the transaction?",
+  "resolveRejectTitle": "Uphold the rejection?",
+  "resolutionNote": "Resolution note",
+  "undoCoffee": "Undo coffee",
+  "reverse": "Reverse",
+  "reverseTitle": "Reverse this transaction?",
+  "reverseReason": "Reason (kept permanently in the history)",
+  "confirmedToast": "Confirmed.",
+  "rejectedToast": "Rejected.",
+  "cancelledToast": "Cancelled.",
+  "disputedToast": "Dispute sent to the administrators.",
+  "reversedToast": "Reversal recorded.",
+  "historyTitle": "History",
+  "historySubmitted": "Submitted",
+  "historyRecorded": "Recorded",
+  "historyConfirmed": "Confirmed",
+  "historyRejected": "Rejected",
+  "historyCancelled": "Cancelled",
+  "historyDisputed": "Disputed",
+  "historyReversed": "Reversed",
+  "historyNote": "Note",
+  "fieldAmount": "Amount",
+  "fieldNoteOptional": "Note (optional)",
+  "fieldReasonRequired": "Reason (required)",
+  "fieldDescription": "What was bought?",
+  "fieldFrom": "Paid by",
+  "fieldTo": "Paid to",
+  "fieldPaidTo": "I paid",
+  "fieldReceivedFrom": "I received money from",
+  "depositTitle": "Money into the cash box",
+  "depositInfoConfirmation": "Put the cash into the box first. A treasurer confirms it; until then it does not count.",
+  "depositInfoDirect": "Your balance and the cash box are updated immediately.",
+  "depositOnBehalf": "Cash handed to me by a member",
+  "depositOnBehalfHint": "Record a deposit for someone else.",
+  "depositSubmit": "Record deposit",
+  "depositRecorded": "Deposit recorded.",
+  "depositPending": "Deposit recorded. A treasurer will confirm it.",
+  "purchaseTitle": "Coffee beans bought",
+  "purchaseFundingQuestion": "Who paid?",
+  "purchaseFundingPersonal": "My own money",
+  "purchaseFundingBox": "Cash box",
+  "purchaseInfoPersonal": "You are credited the amount you paid; the cash box does not change.",
+  "purchaseInfoBox": "The money comes out of the cash box; nobody is credited personally.",
+  "purchaseInfoApproval": "An administrator or treasurer approves purchases before they count.",
+  "purchaseDefaultDescription": "Coffee beans",
+  "purchaseDate": "Bought on {date}",
+  "@purchaseDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "purchaseSubmit": "Record purchase",
+  "purchaseRecorded": "Purchase recorded.",
+  "purchasePending": "Purchase recorded and waiting for approval.",
+  "transferTitle": "Payment between members",
+  "transferModePaid": "I paid",
+  "transferModeReceived": "I received",
+  "transferModeOthers": "Between others",
+  "transferInfoPaid": "The other person confirms that they received the money; until then nothing changes.",
+  "transferInfoReceived": "Recorded as received. Balances update immediately.",
+  "transferInfoOthers": "The recipient confirms the payment before balances change.",
+  "transferInfoOverride": "You confirm the payment on behalf of the recipient. This is recorded in the audit log.",
+  "transferOverride": "Confirm for the recipient",
+  "transferOverrideHint": "Only when the recipient cannot confirm themselves.",
+  "transferSubmit": "Record payment",
+  "transferRecorded": "Payment recorded.",
+  "transferPending": "Payment recorded. The recipient will be asked to confirm it.",
+  "reimburseTitle": "Reimburse from the cash box",
+  "reimburseInfo": "Hand the cash to the member first. The box currently holds {cash} of confirmed money.",
+  "@reimburseInfo": {
+    "placeholders": {
+      "cash": {
+        "type": "String"
+      }
+    }
+  },
+  "reimburseSubmit": "Record reimbursement",
+  "reimbursementRecorded": "Reimbursement recorded.",
+  "requestReimbursementTitle": "Request a reimbursement",
+  "requestReimbursementInfo": "A treasurer pays you from the cash box and confirms it here.",
+  "requestReimbursementSubmit": "Send request",
+  "reimbursementRequested": "Request sent to the treasurers.",
+  "owedAmount": "owed {amount}",
+  "@owedAmount": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "scopeCycle": "This cycle",
+  "scopeAllTime": "All time",
+  "statCashBox": "Cash in the box",
+  "statCashBoxCaption": "Confirmed money that should be in the box",
+  "statDebts": "Members owe",
+  "statCredits": "Group owes members",
+  "statMembersCount": "{count, plural, =0{no members} =1{1 member} other{{count} members}}",
+  "@statMembersCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "statNetPosition": "Net member position",
+  "statNetPositionCaption": "What members owe minus what they are owed",
+  "statCoffees": "Coffees",
+  "statDeposits": "Confirmed deposits",
+  "statDepositsCaption": "Cash paid into the box",
+  "statPersonalPurchases": "Beans paid personally",
+  "statPersonalPurchasesCaption": "Credited to the buyers",
+  "statBoxPurchases": "Beans paid from the box",
+  "statBoxPurchasesCaption": "Taken from the cash box",
+  "statActiveMembers": "Active members",
+  "statPending": "Pending items",
+  "statPendingCaption": "Not counted until confirmed",
+  "statConsumption": "Consumption",
+  "statClosingCash": "Cash at the end",
+  "moneyMapTitle": "Where the money is",
+  "moneyMapExplanation": "Physical cash, money members still owe, and money the group owes to members are different things.",
+  "balancesTitle": "Balances",
+  "searchMembers": "Search members",
+  "sortBy": "Sort by",
+  "noMembersMatch": "No members match.",
+  "columnMember": "Member",
+  "columnCoffees": "Coffees",
+  "columnConsumption": "Consumption",
+  "columnContributions": "Contributions",
+  "columnNet": "Net balance",
+  "columnStatus": "Status",
+  "columnPayments": "Payments",
+  "columnClosing": "Closing balance",
+  "youSuffix": "{name} (you)",
+  "@youSuffix": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "formerMember": "former member",
+  "memberCardSummary": "{coffees, plural, =1{1 coffee} other{{coffees} coffees}} · {consumption} consumed · {contributions} contributed",
+  "@memberCardSummary": {
+    "placeholders": {
+      "coffees": {
+        "type": "int"
+      },
+      "consumption": {
+        "type": "String"
+      },
+      "contributions": {
+        "type": "String"
+      }
+    }
+  },
+  "memberTitle": "Member",
+  "memberNotFound": "This member could not be found.",
+  "memberActivityTitle": "Activity",
+  "netBalanceLabel": "Net balance",
+  "memberOwesExplanation": "{name} owes the group this amount.",
+  "@memberOwesExplanation": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "memberOwedExplanation": "The group owes {name} this amount.",
+  "@memberOwedExplanation": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "memberSettledExplanation": "{name} is settled.",
+  "@memberSettledExplanation": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "payMember": "Pay {name}",
+  "@payMember": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "reimburseMember": "Reimburse from box",
+  "recordCashFromMember": "Record cash received",
+  "adjustBalance": "Adjust balance",
+  "breakdownTitle": "How the balance is calculated",
+  "breakdownExplanation": "Positive amounts increase what the member owes; negative amounts decrease it.",
+  "breakdownOpening": "Carried over",
+  "breakdownCoffees": "Coffees",
+  "breakdownConsumption": "Coffee consumed",
+  "breakdownDeposits": "Paid into the box",
+  "breakdownPurchases": "Beans bought",
+  "breakdownSent": "Payments made",
+  "breakdownReceived": "Payments received",
+  "breakdownReimbursed": "Reimbursed from box",
+  "breakdownAdjustments": "Corrections",
+  "breakdownNet": "Net balance",
+  "adjustBalanceTitle": "Correct {name}’s balance",
+  "@adjustBalanceTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "adjustBalanceInfo": "Use corrections only for genuine mistakes or agreed write-offs. They are permanent and audited.",
+  "adjustCredit": "Credit (lower debt)",
+  "adjustCharge": "Charge (higher debt)",
+  "adjustBalanceSubmit": "Record correction",
+  "adjustmentRecorded": "Correction recorded.",
+  "heroesSubtitle": "Friendly competition, nothing more.",
+  "periodWeek": "Week",
+  "periodMonth": "Month",
+  "periodCycle": "Cycle",
+  "periodAllTime": "All time",
+  "heroesHiddenTitle": "Coffee Heroes is hidden",
+  "heroesHiddenMessage": "You chose to hide the leaderboard and achievements.",
+  "heroesShow": "Show Coffee Heroes",
+  "heroesEmptyTitle": "No coffees in this period",
+  "heroesEmptyMessage": "The first coffee takes the lead.",
+  "heroesYouAreHidden": "You are hidden from other members. Only you can see your own entry.",
+  "heroesTotal": "{count, plural, =1{1 coffee in total} other{{count} coffees in total}}",
+  "@heroesTotal": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "coffeesCount": "{count, plural, =1{1 coffee} other{{count} coffees}}",
+  "@coffeesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "podiumSemantic": "Rank {rank}: {names}, {coffees, plural, =1{1 coffee} other{{coffees} coffees}}",
+  "@podiumSemantic": {
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      },
+      "names": {
+        "type": "String"
+      },
+      "coffees": {
+        "type": "int"
+      }
+    }
+  },
+  "heroTitleFirst": "Coffee Legend",
+  "heroTitleSecond": "Espresso Engine",
+  "heroTitleThird": "Caffeine Commander",
+  "heroFirst1": "The machine recognizes its true master. Even the beans know your name.",
+  "heroFirst2": "Rumour has it the grinder hums your favourite song.",
+  "heroFirst3": "Officially the reason the bean supply has a schedule.",
+  "heroFirst4": "Your mug has its own parking spot by the machine.",
+  "heroSecond1": "Single-handedly keeping the research group operational since Monday.",
+  "heroSecond2": "Powering through experiments, one espresso at a time.",
+  "heroSecond3": "Always one cup away from the crown.",
+  "heroSecond4": "The steam wand salutes you.",
+  "heroThird1": "Third in coffee, first in claiming it’s just one more cup.",
+  "heroThird2": "Proof that consistency beats speed.",
+  "heroThird3": "Bronze has never smelled this good.",
+  "heroThird4": "Quietly brewing a comeback.",
+  "monthlyHeroTitle": "Coffee Hero of {month}",
+  "@monthlyHeroTitle": {
+    "placeholders": {
+      "month": {
+        "type": "String"
+      }
+    }
+  },
+  "funStatsTitle": "Your coffee story",
+  "streakCurrent": "{count, plural, =0{No streak right now} =1{1-day streak} other{{count}-day streak}}",
+  "@streakCurrent": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "streakBest": "Best streak: {count, plural, =1{1 day} other{{count} days}} (weekends don’t break it)",
+  "@streakBest": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shareOfMonth": "You drank {percent}% of the group’s coffee this month",
+  "@shareOfMonth": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "monthCoffees": "{mine} of {group} coffees",
+  "@monthCoffees": {
+    "placeholders": {
+      "mine": {
+        "type": "int"
+      },
+      "group": {
+        "type": "int"
+      }
+    }
+  },
+  "favoriteHour": "Your favourite coffee time: {hour}",
+  "@favoriteHour": {
+    "placeholders": {
+      "hour": {
+        "type": "String"
+      }
+    }
+  },
+  "favoriteHourHint": "Based on all your coffees",
+  "busiestHour": "Busiest hour this week: {hour}",
+  "@busiestHour": {
+    "placeholders": {
+      "hour": {
+        "type": "String"
+      }
+    }
+  },
+  "busiestHourHint": "When the whole group reaches for a cup",
+  "busiestWeekday": "Busiest day this month: {day}",
+  "@busiestWeekday": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "busiestWeekdayHint": "Across the whole group",
+  "showMeOnHeroes": "Show me on Coffee Heroes",
+  "showMeOnHeroesHint": "Others see your name and coffee count in rankings.",
+  "achievementsTitle": "Achievements",
+  "achievementsProgress": "{unlocked} of {total}",
+  "@achievementsProgress": {
+    "placeholders": {
+      "unlocked": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "achievementUnlocked": "Unlocked",
+  "achievementLocked": "Progress {current} of {target}",
+  "@achievementLocked": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "target": {
+        "type": "int"
+      }
+    }
+  },
+  "achFirstSip": "First Sip",
+  "achFirstSipDesc": "Record your first coffee.",
+  "achEarlyBird": "Early Bird",
+  "achEarlyBirdDesc": "Have a coffee before 8:00.",
+  "achNightOwl": "Night Owl",
+  "achNightOwlDesc": "Have a coffee after 20:00.",
+  "achMarathon": "Coffee Marathon",
+  "achMarathonDesc": "Record {count} coffees.",
+  "@achMarathonDesc": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "achConsistency": "Consistency Champion",
+  "achConsistencyDesc": "Have coffee on {days} different days.",
+  "@achConsistencyDesc": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "achBeanGuardian": "Bean Guardian",
+  "achBeanGuardianDesc": "Buy beans for the group.",
+  "achGenerous": "Generous Contributor",
+  "achGenerousDesc": "Pay for a group purchase with your own money.",
+  "achBalanced": "Perfectly Balanced",
+  "achBalancedDesc": "Settle your balance to exactly zero.",
+  "achVeteran": "Coffee Veteran",
+  "achVeteranDesc": "Be a member for {days} days.",
+  "@achVeteranDesc": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "range7Days": "7 days",
+  "range30Days": "30 days",
+  "range90Days": "90 days",
+  "range12Months": "12 months",
+  "rangeCustom": "Custom",
+  "statGroupCoffees": "Group coffees",
+  "statMyCoffees": "Your coffees",
+  "statGroupSpend": "Group consumption",
+  "statParticipation": "Coffee drinkers",
+  "statParticipationCaption": "Members with at least one coffee",
+  "seriesGroup": "Group",
+  "seriesYou": "You",
+  "chartDailyConsumption": "Coffees per day",
+  "chartWeeklyConsumption": "Coffees per week",
+  "chartMonthlyConsumption": "Coffees per month",
+  "chartConsumptionSemantic": "Bar chart: the group had {groupCoffees} coffees, you had {myCoffees}.",
+  "@chartConsumptionSemantic": {
+    "placeholders": {
+      "groupCoffees": {
+        "type": "int"
+      },
+      "myCoffees": {
+        "type": "int"
+      }
+    }
+  },
+  "chartByWeekday": "By day of the week",
+  "chartByHour": "By hour of the day",
+  "chartSpending": "Consumption value over time",
+  "chartSpendingSemantic": "Line chart of consumption value, {amount} in total.",
+  "@chartSpendingSemantic": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "chartCashBox": "Cash box over time",
+  "chartCashBoxSemantic": "Line chart of the cash box, now {amount}.",
+  "@chartCashBoxSemantic": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "compareTitle": "This cycle vs. the previous one",
+  "compareSubtitle": "{currentName} compared with {previousName}",
+  "@compareSubtitle": {
+    "placeholders": {
+      "currentName": {
+        "type": "String"
+      },
+      "previousName": {
+        "type": "String"
+      }
+    }
+  },
+  "compareNoPrevious": "{name} is the first cycle.",
+  "@compareNoPrevious": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "compareCoffeesPerDay": "Coffees per day",
+  "compareCoffees": "Coffees",
+  "compareConsumption": "Consumption",
+  "compareConsumers": "Coffee drinkers",
+  "compareWas": "was {value}",
+  "@compareWas": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "participationTitle": "Participation",
+  "hiddenMember": "Hidden member",
+  "noDataInRange": "No coffees in this range.",
+  "purchaseHistoryTitle": "Bean purchases",
+  "noPurchasesInRange": "No purchases in this range.",
+  "settleSubtitle": "Suggestions to bring every balance to zero",
+  "settleUnsettledTitle": "Still owed",
+  "settleUnsettledExplanation": "The group does not have this money yet. It is repaid as members pay for their coffee.",
+  "settleOptionsTitle": "Options",
+  "settleCashAvailable": "The cash box holds {cash} of confirmed money; {spendable} can be used for reimbursements.",
+  "@settleCashAvailable": {
+    "placeholders": {
+      "cash": {
+        "type": "String"
+      },
+      "spendable": {
+        "type": "String"
+      }
+    }
+  },
+  "settleUseCashBox": "Use the cash box",
+  "settleUseCashBoxHint": "Reimburse members from the box before suggesting payments.",
+  "settleReserve": "Keep in the box",
+  "settleReserveHint": "E.g. money set aside for the next bag of beans.",
+  "settleDisclaimer": "These are recommendations calculated from confirmed balances with a simple greedy method; they keep the number of payments low but are not guaranteed to be the fewest possible. Nothing changes until each payment really happens and is recorded and confirmed.",
+  "settlePendingConsidered": "Pending payments and reimbursements are taken into account so nothing is suggested twice.",
+  "settleInactiveTitle": "Former members with a balance",
+  "settleInactiveHint": "An administrator has to settle or correct this.",
+  "settleAllDoneTitle": "Everyone is settled",
+  "settleAllDoneMessage": "There is nothing to settle right now.",
+  "settleSuggestionsTitle": "{count, plural, =1{1 suggested step} other{{count} suggested steps}}",
+  "@settleSuggestionsTitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "suggestReimbursement": "Treasurer gives {name} {amount} from the cash box",
+  "@suggestReimbursement": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "suggestTransfer": "{from} pays {to} {amount}",
+  "@suggestTransfer": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "suggestDeposit": "{name} pays {amount} into the cash box",
+  "@suggestDeposit": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "explainReimbursement": "{name} is owed {owed} and the box holds {cash} of confirmed cash.",
+  "@explainReimbursement": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "owed": {
+        "type": "String"
+      },
+      "cash": {
+        "type": "String"
+      }
+    }
+  },
+  "explainTransfer": "{from} owes {owes} and {to} is still owed {owed}.",
+  "@explainTransfer": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "owes": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "owed": {
+        "type": "String"
+      }
+    }
+  },
+  "explainDeposit": "{name} owes {amount} and nobody else is waiting for money, so it goes into the box.",
+  "@explainDeposit": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "recordThisStep": "Record this step",
+  "cyclesSubtitle": "Accounting periods and their reports",
+  "cycleOpenSince": "Open since {date}",
+  "@cycleOpenSince": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "cycleClosedRange": "{start} – {end}",
+  "@cycleClosedRange": {
+    "placeholders": {
+      "start": {
+        "type": "String"
+      },
+      "end": {
+        "type": "String"
+      }
+    }
+  },
+  "closeCycle": "Close cycle",
+  "closeCycleTitle": "Close “{name}”",
+  "@closeCycleTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "closeCycleInfo": "Closing freezes this cycle’s report. Balances are never reset: whatever is not settled is carried into the next cycle.",
+  "closeCycleContinue": "Continue",
+  "fieldNextCycleName": "Name of the next cycle",
+  "closeCycleIrreversible": "A closed cycle cannot be reopened.",
+  "closeCycleConfirmTitle": "Close the accounting cycle?",
+  "closeCycleConfirmMessage": "“{name}” will be closed and “{next}” opened. Coffee statistics for the new cycle start at zero.",
+  "@closeCycleConfirmMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "next": {
+        "type": "String"
+      }
+    }
+  },
+  "cycleClosedToast": "“{name}” has been closed.",
+  "@cycleClosedToast": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "closingCash": "Cash carried forward: {amount}",
+  "@closingCash": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "closingEveryoneSettled": "Everyone is settled; the next cycle starts at zero for all members.",
+  "closingCarriedForward": "{count, plural, =1{1 balance will be carried forward:} other{{count} balances will be carried forward:}}",
+  "@closingCarriedForward": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "closingPendingMoved": "{count, plural, =1{1 pending item moves to the next cycle.} other{{count} pending items move to the next cycle.}}",
+  "@closingPendingMoved": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "cycleReportTitle": "Cycle report",
+  "reportFinal": "Final report for {start} – {end}. These figures will not change.",
+  "@reportFinal": {
+    "placeholders": {
+      "start": {
+        "type": "String"
+      },
+      "end": {
+        "type": "String"
+      }
+    }
+  },
+  "reportLive": "Live figures since {start} (as of {generatedAt}).",
+  "@reportLive": {
+    "placeholders": {
+      "start": {
+        "type": "String"
+      },
+      "generatedAt": {
+        "type": "String"
+      }
+    }
+  },
+  "cashSummaryTitle": "Cash box",
+  "cashOpening": "At the start",
+  "cashDeposits": "Deposits",
+  "cashBoxPurchases": "Bean purchases",
+  "cashReimbursements": "Reimbursements",
+  "cashAdjustments": "Corrections",
+  "cashClosing": "At the end",
+  "reportMembersTitle": "Members",
+  "reportCloseNote": "Closing note: {note}",
+  "@reportCloseNote": {
+    "placeholders": {
+      "note": {
+        "type": "String"
+      }
+    }
+  },
+  "reportEmpty": "No activity in this cycle.",
+  "exportCsv": "Export CSV",
+  "exportDone": "Export ready.",
+  "adminOnlyTitle": "For treasurers and administrators",
+  "adminOnlyMessage": "Ask an administrator if you need access.",
+  "approvalsTitle": "Waiting for your decision",
+  "approvalsEmpty": "Nothing to approve.",
+  "adminMembers": "Members & roles",
+  "adminMembersHint": "Assign treasurers and administrators",
+  "adminInvitations": "Invitations",
+  "adminInvitationsHint": "Codes and links to join the group",
+  "adminPrice": "Coffee price",
+  "adminPriceHint": "Change the price of future coffees",
+  "adminCashBox": "Cash box",
+  "adminCashBoxHint": "Count the cash and reconcile",
+  "adminExports": "Exports",
+  "adminExportsHint": "Download CSV reports",
+  "adminAudit": "Audit log",
+  "adminAuditHint": "Every administrative action",
+  "adminSettings": "Group settings",
+  "adminSettingsHint": "Name, time zone and approval rules",
+  "adminCyclesHint": "Close the current cycle and see reports",
+  "integrityTitle": "Ledger integrity",
+  "integrityExplanation": "Checks that every transaction balances, closed cycles still match the ledger and the cash box never went negative.",
+  "integrityRun": "Run check",
+  "integrityOk": "All checks passed.",
+  "integrityProblems": "Some checks failed. Please contact the maintainer.",
+  "rolesExplanation": "Treasurers confirm deposits and handle the cash box. Administrators can also manage members, prices, cycles and corrections.",
+  "memberSince": "Member since {date}",
+  "@memberSince": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "formerMemberSince": "Left on {date}",
+  "@formerMemberSince": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "roleUpdated": "Role of {name} updated.",
+  "@roleUpdated": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "removeMember": "Remove from group",
+  "removeMemberTitle": "Remove {name}?",
+  "@removeMemberTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "removeMemberReason": "Reason (optional)",
+  "memberRemoved": "{name} was removed. Their balance stays in the ledger.",
+  "@memberRemoved": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "newInvitation": "New invitation",
+  "unlimitedUses": "Unlimited uses",
+  "maxUses": "{count, plural, =1{1 use} other{{count} uses}}",
+  "@maxUses": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "validDays": "{days, plural, =1{Valid 1 day} other{Valid {days} days}}",
+  "@validDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "createInvitation": "Create invitation",
+  "noInvitations": "No invitations yet.",
+  "usesCount": "{max, plural, =0{used {used} times} other{used {used} of {max}}}",
+  "@usesCount": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "validUntil": "valid until {date}",
+  "@validUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "invitationRevoked": "revoked",
+  "copyCode": "Copy code",
+  "copyLink": "Copy link",
+  "copied": "Copied to the clipboard.",
+  "revoke": "Revoke",
+  "revokeInvitationTitle": "Revoke this invitation?",
+  "revokeInvitationMessage": "Nobody can join with it anymore.",
+  "newPrice": "New price",
+  "priceExplanation": "Every coffee keeps the price that applied when it was drunk. A new price only affects future coffees.",
+  "priceFromNow": "From now on",
+  "priceFromDate": "From {date}",
+  "@priceFromDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "priceConfirmTitle": "Change the coffee price?",
+  "priceConfirmMessage": "New price {price}, applies {from}.",
+  "@priceConfirmMessage": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      }
+    }
+  },
+  "priceSaved": "Price saved.",
+  "priceHistory": "Price history",
+  "priceScheduled": "Scheduled for {date}",
+  "@priceScheduled": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "priceSince": "Since {date}",
+  "@priceSince": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "cancelScheduledPrice": "Cancel scheduled price",
+  "expectedCash": "Expected cash",
+  "expectedCashCaption": "According to the confirmed transactions",
+  "pendingDeposits": "Unconfirmed deposits",
+  "pendingOutflows": "Unconfirmed payouts",
+  "pendingItemsCount": "{count, plural, =0{none} =1{1 item} other{{count} items}}",
+  "@pendingItemsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reconcileTitle": "Count the cash",
+  "reconcileExplanation": "Count the money in the box and enter it. Differences are recorded and, if you choose, corrected with an audited adjustment.",
+  "countedCash": "Counted cash",
+  "difference": "Difference",
+  "reconcileMatches": "The box matches the records.",
+  "reconcileSurplus": "There is more cash than expected.",
+  "reconcileShortfall": "There is less cash than expected.",
+  "reconcileNote": "Note (required when there is a difference)",
+  "reconcileNoteNeeded": "Explain the difference in the note.",
+  "applyAdjustment": "Correct the expected cash",
+  "applyAdjustmentHint": "Records an adjustment so the system matches the counted cash.",
+  "saveReconciliation": "Save count",
+  "reconciliationSaved": "Count saved.",
+  "reconciliationHistory": "Previous counts",
+  "noReconciliations": "The cash has not been counted yet.",
+  "reconciliationLine": "Counted {counted}, expected {expected}",
+  "@reconciliationLine": {
+    "placeholders": {
+      "counted": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "adjustmentApplied": "adjusted",
+  "auditExplanation": "Administrative actions are recorded permanently.",
+  "auditEmpty": "No entries yet.",
+  "auditGroupCreated": "Group created",
+  "auditSettingsUpdated": "Settings changed",
+  "auditInvitationCreated": "Invitation created",
+  "auditInvitationRevoked": "Invitation revoked",
+  "auditMemberJoined": "Member joined",
+  "auditMemberLeft": "Member left",
+  "auditMemberRemoved": "Member removed",
+  "auditRoleChanged": "Role changed",
+  "auditPriceChanged": "Price changed",
+  "auditPriceCancelled": "Scheduled price cancelled",
+  "auditCycleClosed": "Cycle closed",
+  "auditCashReconciled": "Cash counted",
+  "auditBalanceAdjusted": "Balance corrected",
+  "auditTransactionReversed": "Transaction reversed",
+  "auditDisputeResolved": "Dispute resolved",
+  "auditTransferOverride": "Payment confirmed for the recipient",
+  "auditTransferDecided": "Payment decided by an administrator",
+  "auditAccountDeleted": "Account deleted",
+  "exportsExplanation": "Exports are CSV files that open in any spreadsheet. Amounts use a dot as decimal separator.",
+  "exportRangeAll": "All dates (transactions and purchases)",
+  "exportBalancesCycle": "Balances — this cycle",
+  "exportBalancesCycleHint": "Breakdown for every member",
+  "exportBalancesAllTime": "Balances — all time",
+  "exportBalancesAllTimeHint": "Lifetime figures for every member",
+  "exportCoffeeStats": "Coffee statistics",
+  "exportCoffeeStatsHint": "Coffees per member: week, month, cycle and all time",
+  "exportTransactions": "Transaction history",
+  "exportTransactionsHint": "Every transaction in the chosen range",
+  "exportPurchases": "Bean purchases",
+  "exportPurchasesHint": "Purchases and how they were paid",
+  "exportCycleHint": "Cycle summaries can be exported from each cycle report.",
+  "settingDepositConfirmation": "Deposits need confirmation",
+  "settingDepositConfirmationHint": "A treasurer confirms cash paid into the box before it counts.",
+  "settingPurchaseApproval": "Purchases need approval",
+  "settingPurchaseApprovalHint": "Treasurers or administrators approve bean purchases before they count.",
+  "settingUndoWindow": "Undo window: {minutes} minutes",
+  "@settingUndoWindow": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "settingUndoWindowHint": "How long members can undo their own coffees.",
+  "minutesShort": "{minutes} min",
+  "@minutesShort": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsSaved": "Settings saved.",
+  "settingsProfile": "Profile",
+  "emailPrivate": "Your email is never shown to other members.",
+  "editDisplayName": "Change display name",
+  "settingsAppearance": "Appearance & language",
+  "settingsTheme": "Theme",
+  "themeSystem": "System",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "settingsLanguage": "Language",
+  "languageSystem": "Device language",
+  "settingsGamification": "Show Coffee Heroes",
+  "settingsGamificationHint": "Leaderboard, achievements and fun statistics.",
+  "settingsNotifications": "Notifications",
+  "notifySettlements": "Payments between members",
+  "notifySettlementsHint": "Requests and confirmations",
+  "notifyApprovals": "Approvals",
+  "notifyApprovalsHint": "Deposits, purchases, reimbursements and disputes",
+  "notifyBalance": "Balance updates",
+  "notifyBalanceHint": "Corrections, reversals, price and role changes",
+  "notifyCycles": "Accounting cycles",
+  "notifyCyclesHint": "When a cycle closes",
+  "notifyAwards": "Coffee Hero awards",
+  "notifyAwardsHint": "Monthly results",
+  "notificationsActionNote": "Items that need your decision always appear on the home screen.",
+  "settingsGroups": "Groups",
+  "leaveGroup": "Leave group",
+  "leaveGroupTitle": "Leave {name}?",
+  "@leaveGroupTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "leaveGroupMessage": "You can only leave with a settled balance. Your history stays with the group.",
+  "settingsAccount": "Account",
+  "changePassword": "Change password",
+  "aboutApp": "About Coffee Tracker",
+  "versionLabel": "Version {version}",
+  "@versionLabel": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteAccount": "Delete account",
+  "deleteAccountHint": "Removes your login. Your past transactions stay anonymised.",
+  "deleteAccountTitle": "Delete your account?",
+  "deleteAccountMessage": "Your login is deleted and your name is replaced by “Former member” in the group history. You must have a settled balance in every group.",
+  "deleteAccountKeyword": "DELETE",
+  "typeToConfirm": "Type “{text}” to confirm",
+  "@typeToConfirm": {
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "shortcutsTitle": "Keyboard shortcuts",
+  "shortcutAddCoffee": "Add a coffee",
+  "shortcutNavigate": "Go to a section",
+  "shortcutRefresh": "Refresh",
+  "shortcutHelp": "Show this help",
+  "markAllRead": "Mark all as read",
+  "notificationsEmpty": "No notifications",
+  "notificationsEmptyHint": "Payment requests and updates will appear here.",
+  "nTransferRequested": "{actor} says they paid you {amount}. Please confirm.",
+  "@nTransferRequested": {
+    "placeholders": {
+      "actor": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nTransferConfirmed": "{name} confirmed your payment of {amount}.",
+  "@nTransferConfirmed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nTransferRejected": "{name} rejected your payment of {amount}.",
+  "@nTransferRejected": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nDepositPending": "{name} deposited {amount}. Please verify the cash box.",
+  "@nDepositPending": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nDepositConfirmed": "Your deposit of {amount} was confirmed.",
+  "@nDepositConfirmed": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nDepositRejected": "Your deposit of {amount} was rejected.",
+  "@nDepositRejected": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nDepositRecorded": "{actor} recorded your deposit of {amount}.",
+  "@nDepositRecorded": {
+    "placeholders": {
+      "actor": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nPurchasePending": "{name} bought beans for {amount}. Please review the purchase.",
+  "@nPurchasePending": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nPurchaseApproved": "Your purchase of {amount} was approved.",
+  "@nPurchaseApproved": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nPurchaseRejected": "Your purchase of {amount} was rejected.",
+  "@nPurchaseRejected": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nReimbursementRequested": "{name} asked for a reimbursement of {amount}.",
+  "@nReimbursementRequested": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nReimbursementPaid": "{actor} reimbursed you {amount} from the cash box.",
+  "@nReimbursementPaid": {
+    "placeholders": {
+      "actor": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nReimbursementRejected": "Your reimbursement request of {amount} was rejected.",
+  "@nReimbursementRejected": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nTransactionCancelled": "{actor} cancelled a payment of {amount}.",
+  "@nTransactionCancelled": {
+    "placeholders": {
+      "actor": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nTransactionReversed": "{actor} reversed a transaction of {amount}.",
+  "@nTransactionReversed": {
+    "placeholders": {
+      "actor": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nDisputeOpened": "{actor} disputed a rejected transaction of {amount}.",
+  "@nDisputeOpened": {
+    "placeholders": {
+      "actor": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nDisputeApproved": "The dispute about {amount} was accepted.",
+  "@nDisputeApproved": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nDisputeRejected": "The dispute about {amount} was rejected.",
+  "@nDisputeRejected": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nBalanceAdjusted": "{actor} corrected your balance by {amount}.",
+  "@nBalanceAdjusted": {
+    "placeholders": {
+      "actor": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "nCoffeeForYou": "{actor} recorded {count, plural, =1{a coffee} other{{count} coffees}} for you.",
+  "@nCoffeeForYou": {
+    "placeholders": {
+      "actor": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "nPriceChanged": "The coffee price is now {price}.",
+  "@nPriceChanged": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "nCycleClosed": "“{name}” was closed. {status, select, owes{You carry a debt of {amount}.} owed{The group owes you {amount}.} other{You are settled.}}",
+  "@nCycleClosed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "nRoleChanged": "You are now {role, select, admin{an administrator} treasurer{a treasurer} other{a member}}.",
+  "@nRoleChanged": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "nMemberJoined": "{name} joined the group.",
+  "@nMemberJoined": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "nCoffeeHero": "Coffee Hero of the month: {names}!",
+  "@nCoffeeHero": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "nGeneric": "New update in your group."
+}
