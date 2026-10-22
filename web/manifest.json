@@ -1,12 +1,12 @@
 {
-    "name": "coffee_tracker",
-    "short_name": "coffee_tracker",
+    "name": "Coffee Tracker",
+    "short_name": "Coffee",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
+    "background_color": "#FFF8F0",
+    "theme_color": "#3E2723",
     "description": "Coffee Tracker - shared coffee accounting for research groups",
-    "orientation": "portrait-primary",
+    "orientation": "any",
     "prefer_related_applications": false,
     "icons": [
         {
@@ -31,5 +31,10 @@
             "type": "image/png",
             "purpose": "maskable"
         }
+    ],
+    "lang": "en",
+    "categories": [
+        "finance",
+        "productivity"
     ]
 }

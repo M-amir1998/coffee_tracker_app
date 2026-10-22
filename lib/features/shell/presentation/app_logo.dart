@@ -53,8 +53,8 @@ class LogoPainter extends CustomPainter {
     final body = Path()
       ..moveTo(s * 0.24, s * 0.44)
       ..lineTo(s * 0.70, s * 0.44)
-      ..quadraticBezierTo(s * 0.69, s * 0.74, s * 0.47, s * 0.78)
-      ..quadraticBezierTo(s * 0.25, s * 0.74, s * 0.24, s * 0.44)
+      ..cubicTo(s * 0.70, s * 0.63, s * 0.62, s * 0.77, s * 0.47, s * 0.77)
+      ..cubicTo(s * 0.32, s * 0.77, s * 0.24, s * 0.63, s * 0.24, s * 0.44)
       ..close();
     canvas.drawPath(body, cream);
 

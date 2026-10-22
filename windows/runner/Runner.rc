@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "io.github.mamir1998" "\0"
-            VALUE "FileDescription", "coffee_tracker" "\0"
+            VALUE "FileDescription", "Coffee Tracker" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "coffee_tracker" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2026 io.github.mamir1998. All rights reserved." "\0"
             VALUE "OriginalFilename", "coffee_tracker.exe" "\0"
-            VALUE "ProductName", "coffee_tracker" "\0"
+            VALUE "ProductName", "Coffee Tracker" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
